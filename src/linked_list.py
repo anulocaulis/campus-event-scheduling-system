@@ -3,6 +3,7 @@ class Node:
   def __init__(self,event):
     self.event = event
     self.next = None
+    self.prev = None
 
 class EventLinkedList:
   def __init__(self):
