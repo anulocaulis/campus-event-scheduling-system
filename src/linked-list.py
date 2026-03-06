@@ -4,6 +4,11 @@ class Node:
     self.event = event
     self.next = None
 
+class EventLinkedList(self):
+  self.head = None
+
+class Insert(self, event):
+  
 
 ### Store events (call event-creator.py)
 
