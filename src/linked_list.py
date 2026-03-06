@@ -25,6 +25,18 @@ class EventLinkedList:
     # New Node becomes head
     self.head = newNode
 
+  def append(self, event):
+    # Creates a new node
+    newNode = Node(event)
+    # Names first node head if linked list is empty
+    if temp == None:
+      self.head = temp
+    else:
+      # Traverses until end of list and connects pointer of last node to newNode.
+      while temp.next:
+        temp = temp.next
+      temp.next = newNode
+
 # Length of linked list
   def length(self):
     """
@@ -153,6 +165,7 @@ list_all:
 
 
 ### Store events (call event-creator.py)
+
 
 ### Sort events
 # Quick sort
