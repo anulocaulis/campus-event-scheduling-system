@@ -1,4 +1,8 @@
 ### linked list implementation of campus event scheduling system
+class Node:
+  def __init__(self,event):
+    self.event = event
+    self.next = None
 
 
 ### Store events (call event-creator.py)
