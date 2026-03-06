@@ -4,7 +4,8 @@ class Node:
     self.event = event
     self.next = None
 
-class EventLinkedList(self):
+class EventLinkedList:
+  def __init__(self):
   self.head = None
   self.tail = None
 
