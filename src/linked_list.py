@@ -9,7 +9,7 @@ class Node:
 
 class EventLinkedList:
   def __init__(self):
-  self.head = None
+    self.head = None
 
   def push(self, event):
     newNode = Node(event)
@@ -70,6 +70,7 @@ class EventLinkedList:
     while temp.next != None:
       if temp.next.event.id == target_id:
         temp.next = temp.next.next
+        return
       temp = temp.next
   
   def list_all(self):
