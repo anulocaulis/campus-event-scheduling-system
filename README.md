@@ -4,6 +4,10 @@ Group project #1 for Data Structures and Algorithms -- DTSC 5501 -- Dr. Alfonso 
 
 ### explain roles
 
+- Mike Beitner:
+- Chris Taylor:
+- Luis:
+
 ### explain project design
 
 ### explain results
