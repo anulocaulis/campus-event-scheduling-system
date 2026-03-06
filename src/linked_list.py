@@ -95,11 +95,16 @@ class EventLinkedList:
       # Remove head by moving head to next node
       self.head = self.head.next
       return
-  
+
+    # While pointer is not pointing to null
     while temp.next != None:
+      # If the event id of the next node is equal to target node
       if temp.next.event.id == target_id:
+        # Delete target node by pointing to node after it.
         temp.next = temp.next.next
+        # End while loop
         return
+      # Continues to next node.
       temp = temp.next
   
   def list_all(self):
