@@ -15,6 +15,9 @@ class EventLinkedList:
     self.head = None
 
   def push(self, event):
+    """
+    Pushes event to the front of linked list.
+    """
     # Creates a new node
     newNode = Node(event)
     # Pointer points to head
@@ -24,6 +27,9 @@ class EventLinkedList:
 
 # Length of linked list
   def length(self):
+    """
+    returns the length of the linked list.
+    """
     # Size counter set to zero
     size = 0 
     # Temporary head
@@ -38,8 +44,10 @@ class EventLinkedList:
     return size
  
 
-# Insert to linked list
   def insert(self, index, event):
+    """
+    Inserts event into linked list by index.
+    """
     # If index is zero push first element to connect to next node
     if index == 0:
       self.push(event)
@@ -69,8 +77,12 @@ class EventLinkedList:
       newNode.next = temp.next
       # Left node is pointing to new node
       temp.next = newNode
+
   
   def search_by_id(self, target_id):
+    """
+    Searches event ID in linked list and returns that event
+    """
     # Set temporary head
     temp = self.head 
 
@@ -87,6 +99,9 @@ class EventLinkedList:
     
   
   def delete(self, target_id):
+    """
+    Deletes event by using event ID
+    """
     # Set temporary head
     temp = self.head
     
@@ -108,6 +123,9 @@ class EventLinkedList:
       temp = temp.next
   
   def list_all(self):
+    """
+    Displays all events in linked list
+    """
     # Empty string
     output = ""
     # Set temporary head
@@ -121,7 +139,17 @@ class EventLinkedList:
       temp = temp.next
     # Print linked list. 
     print(output)
-    
+
+"""
+Theoretical Complexities of Operations:
+push: Time Complexity O(1)
+length: Time Complexity O(n)
+insert:
+search_by_id:
+delete:
+list_all:
+
+"""
 
 
 ### Store events (call event-creator.py)
