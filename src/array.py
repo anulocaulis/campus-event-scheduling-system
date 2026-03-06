@@ -1,9 +1,11 @@
+import event_creator, sorting, searching
+
 ### ARRAY IMPLEMENTATION OF SCHEDULING SYSTERM
 
 ### Store events (call event-creator.py)
-
+eventArray = []
 ### Sort events
-# Quick sort
+# Quick sort 
 
 # Merge sort
 
