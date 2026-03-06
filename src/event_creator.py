@@ -3,7 +3,7 @@ import random
 
 # IMPLEMENTATION OF EVENT CLASS
 class Event:
-    def __init__(self, id, title, date, time, location):
+    def __init__(self, title, date, time, location, id=None):
         self.id = id if id is not None else unique_ID() # ALLOWS FOR MANUAL OR AUTO ASSIGNED IDS
         self.title = title
         self.date = date
