@@ -6,6 +6,7 @@ class Node:
 
 class EventLinkedList(self):
   self.head = None
+  self.tail = None
 
 # Insert to linked list
 class Insert(self, event):
