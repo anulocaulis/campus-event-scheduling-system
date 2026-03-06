@@ -3,12 +3,11 @@ class Node:
   def __init__(self,event):
     self.event = event
     self.next = None
-    self.prev = None
+    
 
 class EventLinkedList:
   def __init__(self):
   self.head = None
-  self.tail = None
 
 # Insert to linked list
 class Insert(self, event):
@@ -21,6 +20,8 @@ class Insert(self, event):
     while temp.next:
       temp = temp.next
     temp.next = newEvent
+
+
 
 ### Store events (call event-creator.py)
 
