@@ -1,5 +1,5 @@
-# functions to create campus events at random
-# Both linked list and array implementation can call this script
+# FOR USE IN ASSIGNING RANDOM ID NUMBERS
+import random
 
 # IMPLEMENTATION OF EVENT CLASS
 class Event:
@@ -15,15 +15,13 @@ class Event:
         return f"Event({self.id}, {self.title}, {self.date}, {self.time}, {self.location})"
 
 
-# Create a unique ID
-import random
-
-_usedIDs = set()  # INITIALIZE AS EMPTY SET. WE DON'T WANT ANY REPEATS
+# EMPTY SET TO KEEP TRACK OF WHICH IDS HAVE BEEN USED. WE DON'T WANT ANY REPEATS
+_usedIDs = set() 
 
 # TRACKS USED ID NUMBERS
 def unique_ID():
     while True:
-        newID = random.randint(100000, 999999) # 6 DIGIT RANGE
-        if newID not in _usedIDs:
-            _usedIDs.add(newID)
+        newID = random.randint(100000, 999999)     # 6 DIGIT RANGE FOR MORE VARIABILITY
+        if newID not in _usedIDs:                  # CHECK IF newID ALREADY IN USED SET
+            _usedIDs.add(newID)                    # ADD newID TO USED SET
             return newID
