@@ -9,6 +9,9 @@ class Event:
         self.time = time
         self.location = location
 
+    def __repr__(self):
+        return f"Event({self.id}, {self.title}, {self.date}, {self.time}, {self.location})"
+
 
 # Create a unique ID
 import random
