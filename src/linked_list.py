@@ -155,6 +155,7 @@ class EventLinkedList:
 """
 Theoretical Complexities of Operations:
 push: Time Complexity O(1)
+append: Time Complexity O(n)
 length: Time Complexity O(n)
 insert:
 search_by_id:
