@@ -17,8 +17,6 @@ class DynamicArrayEvent():
     Returns the length of the array
     """
     return self.size
-
-  
     
   # Resizing Method
   def resize(self):
