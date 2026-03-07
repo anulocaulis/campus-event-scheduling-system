@@ -21,6 +21,8 @@ class DynamicArray():
   def resize(self):
     # Doubles capacity of array when capacity is full.
     self.capacity = self.capacity * 2
+    # Creates new empty array with updated capacity.
+    new_array = [None] * self.capacity
 
 ### Store events (call event-creator.py)
 eventArray = []
