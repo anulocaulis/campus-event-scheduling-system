@@ -3,6 +3,8 @@ from event_creator import Event
 
 ### ARRAY IMPLEMENTATION OF SCHEDULING SYSTERM
 class DynamicArrayEvent():
+
+  # Initialize method
   def __init__(self):
     # Length of array
     self.size = 0
@@ -46,11 +48,14 @@ class DynamicArrayEvent():
     
   # Insert Method
   def insert(self, index, event):
+    
     # If at full capacity, simply resize array.
     if self.size == self.capacity:
       self.resize()
+    # Raise
     if index > self.size or index < 0:
       raise ValueError("This index is out of bounds.")
+    
     # SHIFT ELEMENTS TO RIGHT 1 SPACE
     i = self.size
     while i > index:
@@ -61,7 +66,7 @@ class DynamicArrayEvent():
     # INCREMENT SIZE UP BY 1
     self.size += 1
 
-  
+  # Search element by ID
   def search_by_id(self, target_id):
     # Set counter to zero
     i = 0
@@ -73,7 +78,8 @@ class DynamicArrayEvent():
       i += 1
     # Return None if target id not in array.
     return None
-    
+
+  # Delete method
   def delete(self, target_id):
     # GET INDEX OF TARGET
     i = 0
@@ -107,7 +113,28 @@ class DynamicArrayEvent():
     return eventArray
       
   
+    """
+    Theoretical Complexities of Operations:
     
+    append: Time Complexity O()
+    
+    
+    length: Time Complexity O()
+    
+    
+    insert: Time Complexity O()
+    
+    
+    search_by_id: Time Complexity O()
+    
+    
+    delete: Time Complexity O()
+    
+    
+    list_all: Time Complexity On)
+    
+    """
+
     
 
 ### Store events (call event-creator.py)
