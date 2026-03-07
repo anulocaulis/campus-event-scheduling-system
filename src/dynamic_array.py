@@ -6,6 +6,13 @@ class DynamicArrayEvent():
 
   # Initialize method
   def __init__(self):
+    """
+    INITIALIZES EMPTY DYNAMIC ARRAY
+    PARAMS:
+      self - DYNAMIC ARRAY BEING INITIALIZED
+    RETURNS:
+      None
+    """
     # Length of array
     self.size = 0
     # Maximum capacity of array
@@ -16,12 +23,23 @@ class DynamicArrayEvent():
   # Length method
   def __len__(self):
     """
-    Returns the length of the array
+    RETURNS THE LENGTH OF ARRAY
+    PARAMS:
+      self - ARRAY WHOSE LENGTH BEING MEASURED
+    RETURNS:
+      self.size - SIZE/LENGTH OF self ARRAY
     """
     return self.size
     
   # Resizing Method
   def resize(self):
+    """
+    DOUBLES THE CAPACITY OF THE ARRAY WHEN FULL
+    PARAMS:
+      self - ARRAY BEING RESIZED
+    RETURNS:
+      None - MODIFIES ARRAY IN PLACE
+    """
     # Doubles capacity of array when capacity is full.
     self.capacity = self.capacity * 2
     # Creates new empty array with updated capacity.
