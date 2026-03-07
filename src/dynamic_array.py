@@ -71,13 +71,13 @@ class DynamicArrayEvent():
   def delete(self, target_id):
     pass
     
-  def list_all(self, event):
+  def list_all(self):
     temp = []
     i = 0
     while i < self.size:
       temp.append(self.array[i])
       i += 1
-    print(temp)
+    return temp
       
   
     
