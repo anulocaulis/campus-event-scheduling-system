@@ -2,7 +2,7 @@ import event_creator, sorting, searching
 from event_creator import Event
 
 ### ARRAY IMPLEMENTATION OF SCHEDULING SYSTERM
-class DynamicArray():
+class DynamicArrayEvent():
   def __init__(self):
     # Length of array
     self.size = 0
