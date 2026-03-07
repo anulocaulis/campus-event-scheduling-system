@@ -17,7 +17,7 @@ def linear(target, range):
     iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS
     for i, val in enumerate(range):  # USING enumerate() TO TRACK INDEX & VALUE
         iter += 1              # INCREMENT ITERATIONS COUNTER
-        if val == target:            # TARGET NUMBER FOUND IN GIVEN LIST/RRAY
+        if val.id == target:            # TARGET NUMBER FOUND IN GIVEN LIST/RRAY
             print(f"After {iter} 'guesses', target number ({target}) found at index {i}.")       # PRINT STATEMENT FOR TRACKING/DEBUGGING
             return i, iter     # RETURN INDEX WHERE TARGET VALUE FOUND
 
@@ -38,17 +38,17 @@ BINARY SEARCH ALGORITHM - Complexity = O(logn)
         AND
         iter - NUMBER OF LOOP ITERATIONS
 '''
-def binary(target, range):
+def binary(target, array):
     iter = 0                          # COUNTER FOR NUMBER OF LOOP ITERATIONS
-    low = range[0]                    # LOW INDEX OF RANGE
-    high = range[-1]                  # HIGH INDEX OF RANGE
+    low = 0                    # LOW INDEX OF RANGE
+    high = len(array) - 1                  # HIGH INDEX OF RANGE
     while low <= high: # MAIN WHILE LOOP: SEARCH UNTIL TARGET FOUND OR LIST ENDS
         iter += 1                     # INCREMENT ITERATIONS COUNTER
         middle = (low + high) // 2    # DIVIDING OUR SEARCH RANGE IN HALF
-        if range[middle] == target:   # TARGET NUMBER FOUND IN LIST
+        if array[middle].id == target:   # TARGET NUMBER FOUND IN LIST
             print(f"After {iter} 'guesses', target number ({target}) found at index {middle}.")
             return middle, iter       # RETURN INDEX WHERE VALUE FOUND
-        elif middle < target:         # TARGET VALUE GREATER THAN MIDDLE VALUE
+        elif array[middle].id < target:         # TARGET VALUE GREATER THAN MIDDLE VALUE
             low = middle + 1          # SETS low TO INDEX JUST ABOVE MIDDLE
         else:                         # TARGET VALUE LESS THAN MIDDLE VALUE
             high = middle - 1         # SETS high TO INDEX JUST BELOW MIDDLE
