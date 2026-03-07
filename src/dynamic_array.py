@@ -1,4 +1,4 @@
-import event_creator, sorting, searching
+import sorting, searching
 from event_creator import Event
 
 ### ARRAY IMPLEMENTATION OF SCHEDULING SYSTERM
@@ -45,7 +45,7 @@ class DynamicArrayEvent():
     self.size += 1
     
   # Insert Method
-  def insert(self,index, event):
+  def insert(self, index, event):
     # If at full capacity, simply resize array.
     if self.size == self.capacity:
       self.resize()
@@ -75,7 +75,22 @@ class DynamicArrayEvent():
     return None
     
   def delete(self, target_id):
-    pass
+    # GET INDEX OF TARGET
+    i = 0
+    while i < self.size:
+        if self.array[i].id == target_id:
+            break
+        i += 1
+    # IF ID NOT FOUND RETURN NONE
+    if i == self.size:
+        return None
+    # SHIFT ALL ELEMENTS OF ARRAY TO THE LEFT TO FILL IN THE GAP
+    while i < self.size - 1:
+        self.array[i] = self.array[i + 1]
+        i += 1        
+    # CLEAR THE LAST SPOT OF THE ARRAY/LIST AND DECREMENT SIZE
+    self.array[self.size - 1] = None
+    self.size -= 1 
 
   # Lists all events in dynamic array.
   def list_all(self):
