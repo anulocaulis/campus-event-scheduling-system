@@ -142,7 +142,7 @@ class EventLinkedList:
     # Create New Node
     newNode = Node(event)
     # Grab length of linked list
-    length_ll = len(self)
+    length_ll = __len__(self)
     # Raise value error if index is out of bounds
     if length_ll < index or index < 0:
       raise ValueError("Index is out of bounds")
