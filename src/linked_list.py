@@ -28,9 +28,12 @@ class EventLinkedList:
   def append(self, event):
     # Creates a new node
     newNode = Node(event)
-    # Names first node head if linked list is empty
+    # Creates temporary head
+    temp = self.head
+    
+    # Names new node head if linked list is empty
     if temp == None:
-      self.head = temp
+      self.head = newNode
     else:
       # Traverses until end of list and connects pointer of last node to newNode.
       while temp.next:
