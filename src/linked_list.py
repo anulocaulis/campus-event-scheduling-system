@@ -13,6 +13,7 @@ class EventLinkedList:
     # Creates empty linked list 
     self.head = None
 
+  # Push Method
   def push(self, event):
     """
     Pushes event to the front of linked list.
@@ -24,6 +25,7 @@ class EventLinkedList:
     # New Node becomes head
     self.head = newNode
 
+  # Sort Method
   def sort(self, key=None):
     # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
     if key is None: key = lambda e: e.sortKey()
@@ -42,7 +44,7 @@ class EventLinkedList:
       temp.event = event
       temp = temp.next
 
-
+  # Append Method
   def append(self, event):
     # Creates a new node
     newNode = Node(event)
@@ -57,7 +59,7 @@ class EventLinkedList:
         temp = temp.next
       temp.next = newNode
 
-# Length of linked list
+  # Length of linked list
   def __len__(self):
     """
     returns the length of the linked list.
@@ -75,7 +77,7 @@ class EventLinkedList:
     # Return size counter
     return size
  
-
+  # Insert Method
   def insert(self, index, event):
     """
     Inserts event into linked list by index.
@@ -110,7 +112,7 @@ class EventLinkedList:
       # Left node is pointing to new node
       temp.next = newNode
 
-  
+  # Search by ID method
   def search_by_id(self, target_id):
     """
     Searches event ID in linked list and returns that event
@@ -129,7 +131,7 @@ class EventLinkedList:
     # If no target_id is found after traversing linked list return None
     return None
     
-  
+  # Delete method 
   def delete(self, target_id):
     """
     Deletes event by using event ID
@@ -157,6 +159,7 @@ class EventLinkedList:
       # Continues to next node.
       temp = temp.next
   
+  # List All Method
   def list_all(self):
     """
     Displays all events in linked list
@@ -175,17 +178,32 @@ class EventLinkedList:
     # Print linked list. 
     return output
 
-"""
-Theoretical Complexities of Operations:
-push: Time Complexity O(1)
-append: Time Complexity O(n)
-length: Time Complexity O(n)
-insert:
-search_by_id:
-delete:
-list_all:
-
-"""
+  """
+  Theoretical Complexities of Operations:
+  
+  push: Time Complexity O(1)
+  Pushes Node into front of the Linked List.
+  
+  append: Time Complexity O(n)
+  Inserts Node into end of linked list, will have to traverse through the whole node.
+  
+  length: Time Complexity O(n)
+  Traverses the whole array to retrieve length of linked list.
+  
+  insert: Time Complexity(n)
+  Traverses linked list, and inserts node into selected index.
+  
+  search_by_id: Time Complexity(n)
+  Search Id of Node by traversing through the linked list until target ID is found.
+  
+  delete: Time Complexity(n)
+  To delete a node you have to traverse through linked list to delete selected node.
+  
+  list_all: Time Complexity(n)
+  To list all nodes, you have to go through the whole linked list.
+  
+  
+  """
 
 
 ### Store events (call event-creator.py)
