@@ -33,8 +33,8 @@ def mergeSort(myArray, key=None):
         left = myArray[0:n//2]          # left LIST IS FIRST HALF OF myArray
         right = myArray[n//2:n]         # right LIST IS SECOND HALF OF myArray
 
-        L_sort = mergeSort(left)        # RECURSIVE CALL TO SPLIT left FURTHER
-        R_sort = mergeSort(right)       # RECURSIVE CALL TO SPLIT right FURTHER
+        L_sort = mergeSort(left, key=key)        # RECURSIVE CALL TO SPLIT left FURTHER
+        R_sort = mergeSort(right, key=key)       # RECURSIVE CALL TO SPLIT right FURTHER
 
     s = []                              # EMPTY LIST TO STORE FINAL RESULT
     i = 0                               # COUNTER FOR L_sort
@@ -82,8 +82,8 @@ def quickSort(myArray, key =None):
                 equal.append(myArray[i]) #IF myArray[i] = pivot, APPEND TO equal
             else:
                 more.append(myArray[i])  # IF myArray[i] > pivot, APPEND TO more
-        sortLess = quickSort(less) # RECURSIVE CALL TO SORT less
-        sortMore = quickSort(more) # RECURSIVE CALL TO SORT more
+        sortLess = quickSort(less, key=key) # RECURSIVE CALL TO SORT less
+        sortMore = quickSort(more, key=key) # RECURSIVE CALL TO SORT more
 
     s = sortLess + equal + sortMore    # CONCATENATE THREE (3) SUBLISTS TOGETHER
     return s
