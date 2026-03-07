@@ -45,14 +45,17 @@ class EventLinkedList:
     self.head = newNode
 
   # Sort Method
-  def sort(self, key=None):
+  def sort(self, algorithm='mergeSort', key=None):
     """
     SORTS THE LINKED LIST IN PLACE USING INSERTION SORT
     PARAMS:
       self - LINKED LIST BEING SORTED
+      algorithm - SORT ALGORITHM TO USE: 'insertSort', 'mergeSort', 'quickSort'
       key  - SORT KEY FUNCTION, DEFAULTS TO sortKey() (DATE > TIME > LOCATION)
     RETURNS:
       None - MODIFIES LINKED LIST IN PLACE
+    RAISES:
+      ValueError - IF UNKNOWN ALGORITHM NAME GIVEN
     """
     # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
     if key is None: key = lambda e: e.sortKey()
@@ -62,12 +65,19 @@ class EventLinkedList:
     arr = converter(self)
 
     # SORTING THE ARRAY
-    from sorting import insertSort
-    sort_arr = insertSort(arr, key=key)
-
+    from sorting import insertSort, mergeSort, quickSort
+    if algorithm == 'insertSort':
+      sorted = insertSort(arr, key=key)
+    elif algorithm == 'mergeSort':
+      sorted = mergeSort(arr, key=key)
+    elif algorithm == 'quickSort':
+      sorted = quickSort(arr, key=key)
+    else:
+      raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
+    
     # CONVERT SORTED ARRAY BACK INTO LINKED LIST NODES
     temp = self.head
-    for event in sort_arr:
+    for event in sorted:
       temp.event = event
       temp = temp.next
 
