@@ -49,9 +49,17 @@ class DynamicArrayEvent():
     # If at full capacity, simply resize array.
     if self.size == self.capacity:
       self.resize()
-    elif index > self.size or index < 0:
+    if index > self.size or index < 0:
       raise ValueError("This index is out of bounds.")
-    pass
+    # SHIFT ELEMENTS TO RIGHT 1 SPACE
+    i = self.size
+    while i > index:
+      self.array[i] = self.array[i - 1]
+      i -= 1
+    # ADD NEW EVENT AT INDEX
+    self.array[index] = event
+    # INCREMENT SIZE UP BY 1
+    self.size += 1
 
   
   def search_by_id(self, target_id):
