@@ -150,6 +150,35 @@ class DynamicArrayEvent():
     self.array[self.size - 1] = None
     self.size -= 1 
 
+  def sort(self, algorithm="mergeSort", key=None):
+    """
+    SORTS THE DYNAMIC ARRAY IN PLACE USING THE CHOSEN ALGORITHM
+    PARAMS:
+      self - ARRAY BEING SORTED
+      algorithm - SORT ALGORITHM TO USE: 'insertSort', 'mergeSort', 'quickSort'; DEFAULTS TO mergeSort
+      key - SORT KEY FUNCTION, DEFAULTS TO sortKey(): DATE > TIME > LOCATION
+    RETURNS:
+      None - MODIFIES ARRAY IN PLACE
+    RAISES:
+      ValueError - IF UNKNOWN ALGORITHM NAME GIVEN
+    """
+    if key is None: key = lambda e: e.sortKey()
+
+    # ALL EVENTS IN PLAIN PYTHON LIST FOR SORTING
+    arr = self.list_all()
+    if algorithm == 'insertSort':
+      sorted = sorting.insertSort(arr, key=key)
+    elif algorithm == 'mergeSort':
+      sorted = sorting.mergeSort(arr, key=key)
+    elif algorithm == 'quickSort':
+      sorted = sorting.quickSort(arr, key=key)
+    else:
+      raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
+    
+    # WRITING SORTED EVENTS BACK INTO THE INTERNAL ARRAY
+    for i, event in enumerate(sorted):
+      self.array[i] = event
+
   # Lists all events in dynamic array.
   def list_all(self):
     """
