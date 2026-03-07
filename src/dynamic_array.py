@@ -174,14 +174,32 @@ class DynamicArrayEvent():
   
     """
     Theoretical Complexities of Operations:
+
     
     append: Time Complexity O(1) amortized, O(n) worst case scenario
+    
+    Append is constant when dynamic array isn't at full capacity as 
+    adding an event to the end of a list will always have the same runtime 
+    unless it reaches its worst case when the dynamic array is at full capacity.
+
+    
     resize: Time Complexity O(n)
+
+    
     length: Time Complexity O(1)   
+
+    
     insert: Time Complexity O(n)    
+
+    
     search_by_id: Time Complexity O(n)
+
+    
     delete: Time Complexity O(n)    
+
+    
     list_all: Time Complexity O(n)
+    
     
     """
 
