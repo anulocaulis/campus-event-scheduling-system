@@ -56,6 +56,14 @@ class DynamicArrayEvent():
   
   # Append method
   def append(self, event):
+    """
+    ADDS A NEW EVENT TO THE END OF THE ARRAY
+    PARAMS:
+      self  - ARRAY BEING APPENDED TO
+      event - EVENT OBJECT BEING ADDED
+    RETURNS:
+      None - MODIFIES ARRAY IN PLACE
+    """
     # If at capacity resize the array.
     if self.size == self.capacity:
       self.resize()
@@ -66,7 +74,17 @@ class DynamicArrayEvent():
     
   # Insert Method
   def insert(self, index, event):
-    
+    """
+    INSERTS A NEW EVENT AT A GIVEN INDEX
+    PARAMS:
+      self  - ARRAY BEING INSERTED INTO
+      index - POSITION WHERE EVENT WILL BE INSERTED
+      event - EVENT OBJECT BEING INSERTED
+    RETURNS:
+      None - MODIFIES ARRAY IN PLACE
+    RAISES:
+      ValueError - IF INDEX IS OUT OF BOUNDS
+    """
     # If at full capacity, simply resize array.
     if self.size == self.capacity:
       self.resize()
@@ -86,6 +104,15 @@ class DynamicArrayEvent():
 
   # Search element by ID
   def search_by_id(self, target_id):
+    """
+    SEARCHES FOR AN EVENT BY ITS UNIQUE ID
+    PARAMS:
+      self      - ARRAY BEING SEARCHED
+      target_id - ID OF THE EVENT BEING SEARCHED FOR
+    RETURNS:
+      self.array[i] - EVENT OBJECT IF FOUND
+      None          - IF EVENT NOT FOUND
+    """
     # Set counter to zero
     i = 0
     # Only run while inside the array
