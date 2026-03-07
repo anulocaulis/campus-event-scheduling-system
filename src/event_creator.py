@@ -14,6 +14,8 @@ class Event:
     def __repr__(self):
         return f"Event({self.id}, {self.title}, {self.date}, {self.time}, {self.location})"
 
+    def sortKey(self):
+        return (self.date, self.time, self.location)
 
 # EMPTY SET TO KEEP TRACK OF WHICH IDS HAVE BEEN USED. WE DON'T WANT ANY REPEATS
 _usedIDs = set() 
