@@ -6,7 +6,7 @@ Group project #1 for Data Structures and Algorithms -- DTSC 5501 -- Dr. Alfonso 
 
 - Mike Beitner:
 - Chris Taylor:
-- Luis:
+- Luis: Was in charge with creating the methods for the Linked List and the Dynamic Array. Added the theoretical time complexities for these data structures.
 
 ### explain project design
 
