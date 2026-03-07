@@ -48,7 +48,7 @@ class DynamicArrayEvent():
     i = 0
     # Only run while inside the array.
     while i < self.size:
-      # Transfers old arrays to new resized array
+      # Transfers old values from array to new resized array
       new_array[i] = self.array[i]
       i += 1
     # Provides new array with old array values.
