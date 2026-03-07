@@ -213,6 +213,8 @@ class DynamicArrayEvent():
                                     no matter how long dynamic array is.
     insert: Time Complexity O(n) - Loops to traverse the dynamic array to 
                                    find targeted index to insert event.
+    sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
+              worst case: O(n^2)   - insertSort
     search_by_id: Time Complexity O(n) - Loops to traverse the dynamic array
                                          to search Id in the array.
     delete: Time Complexity O(n) - Loops to traverse the dynamic array to 
