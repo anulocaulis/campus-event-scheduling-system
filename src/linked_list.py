@@ -41,7 +41,7 @@ class EventLinkedList:
       temp.next = newNode
 
 # Length of linked list
-  def length(self):
+  def __len__(self):
     """
     returns the length of the linked list.
     """
