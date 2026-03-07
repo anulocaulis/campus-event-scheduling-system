@@ -23,7 +23,6 @@ class DynamicArray():
     self.capacity = self.capacity * 2
     # Creates new empty array with updated capacity.
     new_array = [None] * self.capacity
-
     # Set Counter to zero
     i = 0
     # Only run while inside the list.
@@ -33,6 +32,18 @@ class DynamicArray():
       i += 1
     # Provides new array with old array values.
     self.array = new_array
+  def insert(self,event):
+    # If at full capacity, simply resize array.
+    if self.size == self.capacity:
+      self.resize()
+    pass
+  def search_by_id(self, target_id):
+    pass
+  def delete(self, target_id):
+    pass
+  def list_all(self):
+    pass
+  
     
     
 
