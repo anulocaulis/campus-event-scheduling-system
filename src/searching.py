@@ -14,6 +14,12 @@ LINEAR SEARCH ALGORITHM: Complexity = O(n)
         iter - NUMBER OF LOOP ITERATIONS
 '''
 def linear(target, range):
+    # IF INPUT IS LINKED LIST, CONVERT TO ARRAY FOR SORTING, THEN BINARY SEARCH
+    from converter import converter  # IMPORTING CONVERTER METHOD
+    from linked_list import EventLinkedList # IMPORTING EventLinkedList
+    if isinstance(range, EventLinkedList):  # CHECKING TO SEE IF THE ARRAY IS ACTUALLY A LINKED LIST
+        range = converter(range)
+    
     iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS
     for i, val in enumerate(range):  # USING enumerate() TO TRACK INDEX & VALUE
         iter += 1              # INCREMENT ITERATIONS COUNTER
@@ -39,10 +45,16 @@ BINARY SEARCH ALGORITHM - Complexity = O(logn)
         iter - NUMBER OF LOOP ITERATIONS
 '''
 def binary(target, array):
-    iter = 0                          # COUNTER FOR NUMBER OF LOOP ITERATIONS
+    # IF INPUT IS LINKED LIST, CONVERT TO ARRAY FOR SORTING, THEN BINARY SEARCH
+    from converter import converter  # IMPORTING CONVERTER METHOD
+    from linked_list import EventLinkedList # IMPORTING EventLinkedList
+    if isinstance(array, EventLinkedList):  # CHECKING TO SEE IF THE ARRAY IS ACTUALLY A LINKED LIST
+        array = converter(array)
+    
+    iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS        
     low = 0                    # LOW INDEX OF RANGE
-    high = len(array) - 1                  # HIGH INDEX OF RANGE
-    while low <= high: # MAIN WHILE LOOP: SEARCH UNTIL TARGET FOUND OR LIST ENDS
+    high = len(array) - 1      # HIGH INDEX OF RANGE
+    while low <= high:         # MAIN WHILE LOOP: SEARCH UNTIL TARGET FOUND OR LIST ENDS
         iter += 1                     # INCREMENT ITERATIONS COUNTER
         middle = (low + high) // 2    # DIVIDING OUR SEARCH RANGE IN HALF
         if array[middle].id == target:   # TARGET NUMBER FOUND IN LIST
