@@ -118,7 +118,10 @@ class EventLinkedList:
     """
     # Set temporary head
     temp = self.head
-    
+    # Print message when linked list is empty.
+    if temp is None:
+      print("Cannot delete empty list")
+      return
     # Check if head node is equal to target id 
     if temp.event.id == target_id:
       # Remove head by moving head to next node
