@@ -21,7 +21,7 @@ def linear(target, events):
         events = converter(events)
     
     iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS
-    for i, val in enumerate(range):  # USING enumerate() TO TRACK INDEX & VALUE
+    for i, val in enumerate(events):  # USING enumerate() TO TRACK INDEX & VALUE
         iter += 1              # INCREMENT ITERATIONS COUNTER
         if val.id == target:            # TARGET NUMBER FOUND IN GIVEN LIST/RRAY
             print(f"After {iter} 'guesses', target number ({target}) found at index {i}.")       # PRINT STATEMENT FOR TRACKING/DEBUGGING
@@ -55,7 +55,7 @@ BINARY SEARCH ALGORITHM: Complexity = O(log n)
         date_sorted = quickSort(events, key=lambda e: e.date)
         binary("2026-03-06", date_sorted, key=lambda e: e.date)
 '''
-def binary(target, array):
+def binary(target, array, key=None):
     # IF INPUT IS LINKED LIST, CONVERT TO ARRAY FOR SORTING, THEN BINARY SEARCH
     from converter import converter  # IMPORTING CONVERTER METHOD
     from linked_list import EventLinkedList # IMPORTING EventLinkedList
@@ -63,7 +63,7 @@ def binary(target, array):
         array = converter(array)
 
     # DEFAULT KEY IS EVENT ID
-    if key is None: ey = lambda e: e.id
+    if key is None: key = lambda e: e.id
     
     iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS        
     low = 0                    # LOW INDEX OF RANGE
