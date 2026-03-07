@@ -74,16 +74,16 @@ class DynamicArrayEvent():
   # Lists all events in dynamic array.
   def list_all(self):
     # Create empty list to display events
-    temp = []
+    eventArray = []
     # set counter to zero
     i = 0
     # Run while inside the array
     while i < self.size:
       # Add event into empty list
-      temp.append(self.array[i])
+      eventArray.append(self.array[i])
       i += 1
     # Return list. 
-    return temp
+    return eventArray
       
   
     
