@@ -17,6 +17,7 @@ class DynamicArray():
     Returns the length of the array
     """
     return self.size
+    
   # Resizing Method
   def resize(self):
     # Doubles capacity of array when capacity is full.
@@ -25,24 +26,44 @@ class DynamicArray():
     new_array = [None] * self.capacity
     # Set Counter to zero
     i = 0
-    # Only run while inside the list.
+    # Only run while inside the array.
     while i < self.size:
       # Transfers old arrays to new resized array
       new_array[i] = self.array[i]
       i += 1
     # Provides new array with old array values.
     self.array = new_array
-  def insert(self,event):
+
+  # Insert Method
+  def insert(self,index, event):
     # If at full capacity, simply resize array.
     if self.size == self.capacity:
       self.resize()
+    elif index > self.size or index < 0:
+      raise ValueError("This index is out of bounds.")
     pass
+
+  
   def search_by_id(self, target_id):
-    pass
+    # Set counter to zero
+    i = 0
+    # Only run while inside the array
+    while i < self.size:
+      # Returns event iteration if it matches target id
+      if self.array[i].id == target_id:
+        return self.array[i]
+       i += 1
+    # Return None if target id not in array.
+    return None
+    
   def delete(self, target_id):
     pass
+    
   def list_all(self):
-    pass
+    i = 0
+    while i < self.size:
+      print(self.array[i])
+      i += 1
   
     
     
