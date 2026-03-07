@@ -7,7 +7,6 @@ class Node:
     self.event = event
     # Pointer to next node, is defaulted to Null
     self.next = None
-    
 
 class EventLinkedList:
   def __init__(self):
@@ -24,6 +23,25 @@ class EventLinkedList:
     newNode.next = self.head
     # New Node becomes head
     self.head = newNode
+
+  def sort(self, key=None):
+    # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
+    if key is None: key = lambda e: e.sortKey()
+    
+    # CONVERTING EVENTS FROM LINKED LIST TO AN ARRAY
+    from converter import converter
+    arr = converter(self)
+
+    # SORTING THE ARRAY
+    from sorting import insertSort
+    sort_arr = insertSort(arr, key=key)
+
+    # CONVERT SORTED ARRAY BACK INTO LINKED LIST NODES
+    temp = self.head
+    for event in sort_arr:
+      temp.event = event
+      temp = temp.next
+
 
   def append(self, event):
     # Creates a new node
@@ -75,7 +93,7 @@ class EventLinkedList:
     # Create New Node
     newNode = Node(event)
     # Grab length of linked list
-    length_ll = self.length()
+    length_ll = len(self)
     # Raise value error if index is out of bounds
     if length_ll < index or index < 0:
       raise ValueError("Index is out of bounds")
@@ -155,7 +173,7 @@ class EventLinkedList:
       # Move to next node
       temp = temp.next
     # Print linked list. 
-    print(output)
+    return output
 
 """
 Theoretical Complexities of Operations:
