@@ -35,6 +35,7 @@ class DynamicArray():
       i += 1
     # Provides new array with old array values.
     self.array = new_array
+  
   # Append method
   def append(self):
     # If at capacity resize the array.
@@ -63,7 +64,7 @@ class DynamicArray():
       # Returns event iteration if it matches target id
       if self.array[i].id == target_id:
         return self.array[i]
-       i += 1
+      i += 1
     # Return None if target id not in array.
     return None
     
