@@ -37,7 +37,7 @@ class DynamicArrayEvent():
     self.array = new_array
   
   # Append method
-  def append(self):
+  def append(self, event):
     # If at capacity resize the array.
     if self.size == self.capacity:
       self.resize()
