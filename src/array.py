@@ -17,6 +17,8 @@ class DynamicArray():
     Returns the length of the array
     """
     return self.size
+
+  
     
   # Resizing Method
   def resize(self):
@@ -33,7 +35,16 @@ class DynamicArray():
       i += 1
     # Provides new array with old array values.
     self.array = new_array
-
+  # Append method
+  def append(self):
+    # If at capacity resize the array.
+    if self.size == self.capacity:
+      self.resize()
+    # Set last index of array equal to event value
+    self.array[self.size] = event
+    # Increase size counter
+    self.size += 1
+    
   # Insert Method
   def insert(self,index, event):
     # If at full capacity, simply resize array.
