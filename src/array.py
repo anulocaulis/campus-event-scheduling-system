@@ -17,6 +17,10 @@ class DynamicArray():
     Returns the length of the array
     """
     return self.size
+  # Resizing Method
+  def resize(self):
+    # Doubles capacity of array when capacity is full.
+    self.capacity = self.capacity * 2
 
 ### Store events (call event-creator.py)
 eventArray = []
