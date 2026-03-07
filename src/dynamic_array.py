@@ -174,30 +174,21 @@ class DynamicArrayEvent():
   
     """
     Theoretical Complexities of Operations:
-    
-    append: Time Complexity O(1) amortized, O(n) worst case scenario
-    Append is constant when dynamic array isn't at full capacity as 
-    adding an event to the end of a list will always have the same runtime 
-    unless it reaches its worst case when the dynamic array is at full capacity.
-    
-    resize: Time Complexity O(n)
-    Loop to traverse the dynamic array. Resizing method depends on the length of the
-    dynamic array.
-    
-    ength: Time Complexity O(1)  
-    Returns length of list at constant time, no matter how long dynamic array is.
-    
-    insert: Time Complexity O(n)   
-    Loops to traverse the dynamic array to find targeted index to insert event.
-    
-    search_by_id: Time Complexity O(n)
-    Loops to traverse the dynamic array to search Id in the array.
-    
-    delete: Time Complexity O(n)  
-    Loops to traverse the dynamic array to find targeted index to delete event.
-    
-    list_all: Time Complexity O(n)
-    Loops to tranverse the dynamic array to insert events into array.
+    append: Time Complexity O(1) amortized, O(n) worst case scenario - Append is constant when dynamic array isn't at full capacity as adding an event to 
+                                                                      the end of a list will always have the same runtime unless it reaches its worst case 
+                                                                      when the dynamic array is at full capacity.
+    resize: Time Complexity O(n) - Loop to traverse the dynamic array. 
+                                   Resizing method depends on the length of the dynamic array.
+    __len__: Time Complexity O(1) - Returns length of list at constant time,
+                                    no matter how long dynamic array is.
+    insert: Time Complexity O(n) - Loops to traverse the dynamic array to 
+                                   find targeted index to insert event.
+    search_by_id: Time Complexity O(n) - Loops to traverse the dynamic array
+                                         to search Id in the array.
+    delete: Time Complexity O(n) - Loops to traverse the dynamic array to 
+                                   find targeted index to delete event.
+    list_all: Time Complexity O(n) - Loops to tranverse the dynamic array 
+                                     to insert events into array.
     """
 
     
