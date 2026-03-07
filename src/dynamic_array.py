@@ -174,9 +174,9 @@ class DynamicArrayEvent():
   
     """
     Theoretical Complexities of Operations:
-    append: Time Complexity O(1) amortized, O(n) worst case scenario - Append is constant when dynamic array isn't at full capacity as adding an event to 
-                                                                      the end of a list will always have the same runtime unless it reaches its worst case 
-                                                                      when the dynamic array is at full capacity.
+    append: Time Complexity O(1) amortized, - Append is constant when dynamic array isn't at full capacity as adding an event to 
+            O(n) worst case scenario          the end of a list will always have the same runtime unless it reaches its worst case 
+                                              when the dynamic array is at full capacity.                                       
     resize: Time Complexity O(n) - Loop to traverse the dynamic array. 
                                    Resizing method depends on the length of the dynamic array.
     __len__: Time Complexity O(1) - Returns length of list at constant time,
