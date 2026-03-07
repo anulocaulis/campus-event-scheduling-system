@@ -1,19 +1,19 @@
 from event_creator import Event
 
-  """
-  Theoretical Complexities of Operations:
+"""
+Theoretical Complexities of Operations:
   
-  push: Time Complexity O(1) - Pushes Node into front of the Linked List.
-  append: Time Complexity O(n) - Inserts Node into end of linked list, will have to traverse through the whole list.
-  length: Time Complexity O(n) - Traverses the whole linked list to retrieve length.
-  insert: Time Complexity O(n) - Traverses linked list, and inserts node into selected index.
-  sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
-        Time Complexity O(n^2) - worst case for insertSort
-  search_by_id: Time Complexity O(n) - Search Id of Node by traversing through the linked list until target ID is found.
-  delete: Time Complexity O(n) - To delete a node you have to traverse through linked list to delete selected node.
-  list_all: Time Complexity O(n) - To list all nodes, you have to go through the whole linked list.
-  
-  """
+push: Time Complexity O(1) - Pushes Node into front of the Linked List.
+append: Time Complexity O(n) - Inserts Node into end of linked list, will have to traverse through the whole list.
+length: Time Complexity O(n) - Traverses the whole linked list to retrieve length.
+insert: Time Complexity O(n) - Traverses linked list, and inserts node into selected index.
+sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
+      Time Complexity O(n^2) - worst case for insertSort
+search_by_id: Time Complexity O(n) - Search Id of Node by traversing through the linked list until target ID is found.
+delete: Time Complexity O(n) - To delete a node you have to traverse through linked list to delete selected node.
+list_all: Time Complexity O(n) - To list all nodes, you have to go through the whole linked list.
+
+"""
 
 ### linked list implementation of campus event scheduling system
 class Node:
