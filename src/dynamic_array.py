@@ -91,7 +91,6 @@ class DynamicArrayEvent():
     # Raise
     if index > self.size or index < 0:
       raise ValueError("This index is out of bounds.")
-    
     # SHIFT ELEMENTS TO RIGHT 1 SPACE
     i = self.size
     while i > index:
@@ -126,6 +125,14 @@ class DynamicArrayEvent():
 
   # Delete method
   def delete(self, target_id):
+    """
+    DELETES AN EVENT FROM THE ARRAY BY ITS UNIQUE ID
+    PARAMS:
+      self      - ARRAY BEING MODIFIED
+      target_id - ID OF THE EVENT TO BE DELETED
+    RETURNS:
+      None - IF EVENT NOT FOUND OR AFTER SUCCESSFUL DELETION
+    """
     # GET INDEX OF TARGET
     i = 0
     while i < self.size:
@@ -145,6 +152,13 @@ class DynamicArrayEvent():
 
   # Lists all events in dynamic array.
   def list_all(self):
+    """
+    RETURNS A LIST OF ALL EVENTS CURRENTLY IN THE ARRAY
+    PARAMS:
+      self - ARRAY BEING LISTED
+    RETURNS:
+      eventArray - PYTHON LIST CONTAINING ALL EVENT OBJECTS
+    """
     # Create empty list to display events
     eventArray = []
     # set counter to zero
@@ -161,22 +175,13 @@ class DynamicArrayEvent():
     """
     Theoretical Complexities of Operations:
     
-    append: Time Complexity O()
-    
-    
-    length: Time Complexity O()
-    
-    
-    insert: Time Complexity O()
-    
-    
-    search_by_id: Time Complexity O()
-    
-    
-    delete: Time Complexity O()
-    
-    
-    list_all: Time Complexity On)
+    append: Time Complexity O(1) amortized, O(n) worst case scenario
+    resize: Time Complexity O(n)
+    length: Time Complexity O(1)   
+    insert: Time Complexity O(n)    
+    search_by_id: Time Complexity O(n)
+    delete: Time Complexity O(n)    
+    list_all: Time Complexity O(n)
     
     """
 
