@@ -24,6 +24,18 @@ class DynamicArray():
     # Creates new empty array with updated capacity.
     new_array = [None] * self.capacity
 
+    # Set Counter to zero
+    i = 0
+    # Only run while inside the list.
+    while i < self.size:
+      # Transfers old arrays to new resized array
+      new_array[i] = self.array[i]
+      i += 1
+    # Provides new array with old array values.
+    self.array = new_array
+    
+    
+
 ### Store events (call event-creator.py)
 eventArray = []
 ### Sort events
