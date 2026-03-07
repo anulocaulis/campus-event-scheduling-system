@@ -17,13 +17,12 @@ def conflict(events):
 
     # EMPTY LIST READY FOR ADDING CONFLICT PAIRS
     conflicts = []  
-
-    # ONLY NEED TO COMPARE ADJACENT EVENTS AFTER SORTING
     i = 0
+    # ITERATE THROUGH SORTED LIST COMPARING ADJACENT EVENTS FOR CONFLICTS
     while i < len(sorted_events) - 1:
         curr = sorted_events[i]
         next = sorted_events[i + 1]
-        # CONFLICT IF SAME DATE AND SAME TIME
+        # CONFLICT IF SAME DATE, SAME TIME, AND SAME LOCATION
         if curr.date == next.date and curr.time == next.time and curr.location == next.location:
             conflicts.append((curr, next))
         i += 1
