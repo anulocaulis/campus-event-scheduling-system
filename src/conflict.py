@@ -3,6 +3,7 @@
 
 import sorting
 import benchmark
+from event_creator import Event
 
 def conflict_naive(events):
     """
@@ -18,8 +19,8 @@ def conflict_naive(events):
     data = events.list_all()
 
     # EMPTY LIST OF CONFLICT LISTS
-    conflict = []
-
+    conflicts = []
+        
     # NUMBER OF EVENTS
     n = len(data)
 
@@ -29,7 +30,9 @@ def conflict_naive(events):
             if data[i].location == data[j].location:
                 if data[i].date == data[j].date:
                     if data[i].time == data[j].time:
-                        conflict.append([data[i], data[j]])
+                        conflicts.append([data[i], data[j]])
+
+    return conflicts
 
 def conflict_optimized(events, sort_func):
     """
