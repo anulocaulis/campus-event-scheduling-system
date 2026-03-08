@@ -9,9 +9,12 @@ from linked_list import EventLinkedList
 from randEvent import genEvents
 from sorting import insertSort, mergeSort, quickSort
 from searching import linear, binary
+import conflict
 
-# FOUR TESTING SIZES
+# FOUR TESTING SIZES FOR SORTING
 sizes = [50, 500, 5000, 50000]
+# FOUR TESTING SIZES FOR CONFLICT DETECTION
+conf_size = [100, 500, 5000, 10000]
 # NUMBER OF REPEATS FOR AVERAGING
 trials = 3
 # SORT ALGORITHMS TO TEST AND THEIR DISPLAY LABELS
@@ -186,12 +189,62 @@ def benchmark_searching():
 
 # BENCHMARK TESTING FOR CONFLICT DETECTION
 def benchmark_conflict():
-    pass
+    """
+    MEASURES RUNTIME OF NAIVE VS OPTIMIZED CONFLICT DETECTION.
+    TEST ALL THREE SORTS.
+    RESULTS STRUCTURED AS:
+        results[LinkedList][naive][n] = avg_seconds
+        results[LinkedList][mergeSort][n] = avg_seconds
+        results[LinkedList][insertSort][n] = avg_seconds
+        results[LinkedList][quickSort][n] = avg_seconds
+        results[DynamicArray][naive][n] = avg_seconds
+        results[DynamicArray][mergeSort][n] = avg_seconds
+        results[DynamicArray][insertSort][n] = avg_seconds
+        results[DynamicArray][quickSort][n] = avg_seconds 
+    """
+    # SETUP NESTED LOOPS OF ALL STRUCTURES AND ALGORITHMS
+    # MAP TO LOADING FUNCTIONS AND ALGORITHM FUNCTIONS
+    structures = ["Array", "LinkedList"]
+    sort_funcs = {"insertSort": insertSort, "mergeSort": mergeSort, "quickSort": quickSort}
+    algos = ["Naive", "insertSort", "mergeSort", "quickSort"]
+    loaders = {"Array": loadArray, "LinkedList": loadLinked}
+
+    # DEFINE RESULTS
+    results = {"Array":  {alg: {} for alg in algos},
+               "Linked List": {alg: {} for alg in algos}}
+    # DEFINE TRIALS
+    for n in conf_size:
+        print(f"\n  n = {n:,}")
+        baseEvents = genEvents(n)
+        # ITERATE FIRST THROUGH LINKED LIST AND ARRAY
+        for structure in structures:
+            loader_func = loaders[structure]
+            # THEN ITERATE THROUGH ALGORITHM TYPES
+            for alg in algos:
+                if alg == "Naive" and n > 5000:
+                    print("skipping brute force conflict detection for n={n} for troubleshooting")
+                    continue
+                conflict_time = 0
+                for t in range(trials):
+                    container = loader_func(copy.deepcopy(baseEvents))
+                    sort_func = None
+                    if alg != "Naive":
+                        sort_func = sort_funcs[alg]
+                    start = time.perf_counter()
+                    conflict.conflict(container, sort_func=sort_func)
+                    end = time.perf_counter()
+                    conflict_time += (end - start)
+                
+                avg_time = conflict_time/trials
+                results[structure][alg][n] = avg_time
+                print(f"{structure:10s} | {alg:15s} | n={n:6} | Average Completion: {avg_time:.6f}s")
+    return results
 
 # ENTRY POINT
 if __name__ == "__main__":
-    sort_results    = benchmark_sorting()
-    search_results  = benchmark_searching()
+    # sort_results    = benchmark_sorting()
+    # search_results  = benchmark_searching()
+    conflict_results = benchmark_conflict()
     print("\n\nAll benchmarks complete.")
     print("Pass sort_results and search_results into plot_benchmarks() to visualize.")
 
