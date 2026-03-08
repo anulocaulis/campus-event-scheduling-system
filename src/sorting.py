@@ -1,5 +1,8 @@
 # SORTING ALGORITHMS: INSERTION, MERGE, QUICK
 
+# IMPORTs
+import random
+
 # INSERTION SORT FOR ARRAY IMPLEMENTATION
 def insertSort(myArray, key=None):
     n = len(myArray)         # ASSIGN n AS len(myArray) FOR EASE OF USE
