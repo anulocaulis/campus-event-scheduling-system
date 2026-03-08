@@ -226,10 +226,6 @@ def benchmark_conflict():
                     continue
                 conflict_time = 0
                 for t in range(trials):
-                    # check events for str
-                    temp_events = copy.deepcopy(baseEvents)
-                    if not hasattr(temp_events[0], 'location'):
-                        print(f"Deepcopy broke an object here. type is {type(temp_events[0])}")
                     container = loader_func(copy.deepcopy(baseEvents))
                     sort_func = None
                     if alg != "Naive":
