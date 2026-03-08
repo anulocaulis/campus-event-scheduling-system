@@ -14,6 +14,7 @@ class Event:
     def __repr__(self):
         return f"Event({self.id}, {self.title}, {self.date}, {self.time}, {self.location})"
 
+    # DISPLAYS ATTRIBUTES THAT DEFINE A CONFLICT FOR EASY CONFLICT COMPARISON
     def sortKey(self):
         return (self.date, self.time, self.location)
 
