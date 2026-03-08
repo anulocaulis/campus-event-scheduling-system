@@ -242,8 +242,8 @@ def benchmark_conflict():
 
 # ENTRY POINT
 if __name__ == "__main__":
-    # sort_results    = benchmark_sorting()
-    # search_results  = benchmark_searching()
+    sort_results    = benchmark_sorting()
+    search_results  = benchmark_searching()
     conflict_results = benchmark_conflict()
     print("\n\nAll benchmarks complete.")
     print("Pass sort_results and search_results into plot_benchmarks() to visualize.")
