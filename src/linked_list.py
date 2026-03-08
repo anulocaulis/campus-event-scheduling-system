@@ -259,7 +259,9 @@ class EventLinkedList:
     # Traverse to end of list
     while temp != None:
       # Add event string and pointer ->
-      output += str(temp.event) + "->"
+      # this needs to be an append, not a str(event).
+      # output += str(temp.event) + "->"
+      output.append(temp.event)
       # Move to next node
       temp = temp.next
     # Print linked list. 
