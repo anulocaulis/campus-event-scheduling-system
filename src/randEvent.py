@@ -73,7 +73,7 @@ def genEvents(n):
     """
     events = []
     for i in range(n):    
-        events.append(randomEvent())
+        events.append(createEvent())
     return events
 
 
