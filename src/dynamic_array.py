@@ -25,7 +25,7 @@ list_all: Time Complexity O(n) - Loops to tranverse the dynamic array
 
 
 ### ARRAY IMPLEMENTATION OF SCHEDULING SYSTERM
-class DynamicArrayEvent():
+class DynamicArrayEvent:
 
   # Initialize method
   def __init__(self):
