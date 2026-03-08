@@ -3,7 +3,7 @@ import time
 import copy
 
 # IMPORT NEEDED METHODS
-from event_generator import genEvents
+from event_creator import Event
 from dynamic_array import DynamicArrayEvent
 from linked_list import EventLinkedList
 from sorting import insertSort, mergeSort, quickSort
