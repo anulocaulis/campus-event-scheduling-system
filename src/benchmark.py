@@ -211,7 +211,7 @@ def benchmark_conflict():
 
     # DEFINE RESULTS
     results = {"Array":  {alg: {} for alg in algos},
-               "Linked List": {alg: {} for alg in algos}}
+               "LinkedList": {alg: {} for alg in algos}}
     # DEFINE TRIALS
     for n in conf_size:
         print(f"\n  n = {n:,}")
@@ -226,6 +226,10 @@ def benchmark_conflict():
                     continue
                 conflict_time = 0
                 for t in range(trials):
+                    # check events for str
+                    temp_events = copy.deepcopy(baseEvents)
+                    if not hasattr(temp_events[0], 'location'):
+                        print(f"Deepcopy broke an object here. type is {type(temp_events[0])}")
                     container = loader_func(copy.deepcopy(baseEvents))
                     sort_func = None
                     if alg != "Naive":
