@@ -251,8 +251,8 @@ class EventLinkedList:
     RETURNS:
       output - STRING OF ALL EVENTS SEPARATED BY ->
     """
-    # Empty string
-    output = ""
+    # Empty list
+    output = []
     # Set temporary head
     temp = self.head
 
