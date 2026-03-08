@@ -6,6 +6,7 @@ import copy
 from event_creator import Event
 from dynamic_array import DynamicArrayEvent
 from linked_list import EventLinkedList
+from randEvent import genEvents
 from sorting import insertSort, mergeSort, quickSort
 from searching import linear, binary
 
@@ -183,7 +184,9 @@ def benchmark_searching():
 
     return results
 
-
+# BENCHMARK TESTING FOR CONFLICT DETECTION
+def benchmark_conflict():
+    pass
 
 # ENTRY POINT
 if __name__ == "__main__":
