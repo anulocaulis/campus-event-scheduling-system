@@ -71,7 +71,7 @@ def quickSort(myArray, key =None):
     if n <= 1:                          # BASE CASE RETURNS myArray
         return myArray
     else:
-        pivot = myArray[0]               # PICK PIVOT: FIRST ELEMENT IN myArray
+        pivot = random.choice(myArray)   # PICK PIVOT: RANDOM CHOICE FROM myArray
         less = []                        # CREATE EMPTY LIST FOR VALS < pivot
         equal = [pivot]                  # CREATE EMPTY LIST FOR VALS = pivot
         more = []                        # CREATE EMPTY LIST FOR VALS > pivot
