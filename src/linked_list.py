@@ -245,7 +245,7 @@ class EventLinkedList:
   # List All Method
   def list_all(self):
     """
-    RETURNS A STRING OF ALL EVENTS IN THE LINKED LIST
+    RETURNS A LIST OF ALL EVENTS IN THE LINKED LIST
     PARAMS:
       self - LINKED LIST BEING LISTED
     RETURNS:
@@ -258,9 +258,7 @@ class EventLinkedList:
 
     # Traverse to end of list
     while temp != None:
-      # Add event string and pointer ->
-      # this needs to be an append, not a str(event).
-      # output += str(temp.event) + "->"
+      # Append
       output.append(temp.event)
       # Move to next node
       temp = temp.next
