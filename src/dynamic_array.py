@@ -212,16 +212,16 @@ class DynamicArrayEvent:
     # ALL EVENTS IN PLAIN PYTHON LIST FOR SORTING
     arr = self.list_all()
     if algorithm == 'insertSort':
-      sorted = sorting.insertSort(arr, key=key)
+      sortedArr = sorting.insertSort(arr, key=key)
     elif algorithm == 'mergeSort':
-      sorted = sorting.mergeSort(arr, key=key)
+      sortedArr = sorting.mergeSort(arr, key=key)
     elif algorithm == 'quickSort':
-      sorted = sorting.quickSort(arr, key=key)
+      sortedArr = sorting.quickSort(arr, key=key)
     else:
       raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
     
     # WRITING SORTED EVENTS BACK INTO THE INTERNAL ARRAY
-    for i, event in enumerate(sorted):
+    for i, event in enumerate(sortedArr):
       self.array[i] = event
 
   # Lists all events in dynamic array.
