@@ -93,7 +93,7 @@ class DynamicArrayEvent:
       """
       # Raise
       if index >= self.size or index < 0:
-          raise ValueError("This index is out of bounds.")
+          raise ValueError("Index is out of bounds.")
       
       # Return Event at given index
       return self.array[index]
@@ -135,7 +135,7 @@ class DynamicArrayEvent:
       self.resize()
     # Raise
     if index > self.size or index < 0:
-      raise ValueError("This index is out of bounds.")
+      raise ValueError("Index is out of bounds.")
     # SHIFT ELEMENTS TO RIGHT 1 SPACE
     i = self.size
     while i > index:
