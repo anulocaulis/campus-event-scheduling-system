@@ -98,6 +98,8 @@ class EventLinkedList:
     # CONVERT SORTED ARRAY BACK INTO LINKED LIST NODES
     temp = self.head
     for event in sortedArr:
+      if temp is None:
+        break
       temp.event = event
       temp = temp.next
 
