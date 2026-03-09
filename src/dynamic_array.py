@@ -220,9 +220,16 @@ class DynamicArrayEvent:
     else:
       raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
     
+    # ALLOW ARRAY RESIZE IF SORTING ALGORITHM RETURNS A NEW ARRAY
+    while len(sortedArr) > self.capacity:
+      self.resize()
+
     # WRITING SORTED EVENTS BACK INTO THE INTERNAL ARRAY
     for i, event in enumerate(sortedArr):
       self.array[i] = event
+
+    # UPDATE SIZE FOR DYNAMICARRAY
+    self.size = len(sortedArr)
 
   # Lists all events in dynamic array.
   def list_all(self):
