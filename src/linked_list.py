@@ -6,6 +6,7 @@ Theoretical Complexities of Operations:
 push: Time Complexity O(1) - Pushes Node into front of the Linked List.
 append: Time Complexity O(n) - Inserts Node into end of linked list, will have to traverse through the whole list.
 length: Time Complexity O(n) - Traverses the whole linked list to retrieve length.
+get_at: Time Complexity O(n) - Traverses through linked list until it retrieves event at given index.
 insert: Time Complexity O(n) - Traverses linked list, and inserts node into selected index.
 sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
       Time Complexity O(n^2) - worst case for insertSort
@@ -140,6 +141,38 @@ class EventLinkedList:
       temp = temp.next 
     # Return size counter
     return size
+
+  def get_at(self, index):
+    """
+    GETS EVENT AT GIVEN INDEX
+    PARAMS:
+      self - LINKED LIST TO PULL EVENT WITH GIVEN INDEX
+      INDEX - POSITION WHERE WE WILL GET EVENT
+
+    RETURNS: 
+        temp.event - EVENT OBJECT IF FOUND.
+    RAISES:
+        ValueError - IF INDEX IS OUT OF BOUNDS.
+    """
+    
+    # Set counter to zero
+    counter = 0
+    # Set temporary head
+    temp = self.head
+    # Grabs length of Linked List  
+    length_ll = len(self)
+    # Raise
+    if length_ll <= index or index < 0:
+      raise ValueError("Index is out of bounds")
+    
+    else:
+      # Traverse linked list until equal to index
+      while counter != index:
+        counter += 1
+        temp = temp.next
+    # Return event node
+    return temp.event
+  
  
   # Insert Method
   def insert(self, index, event):
