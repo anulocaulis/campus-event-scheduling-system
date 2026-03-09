@@ -1,2 +1,4 @@
-# REQUIREMENTS FILE
+matplotlib
+pytest
+numpy
 
