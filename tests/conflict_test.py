@@ -46,23 +46,24 @@ def emptySchedule():
     return DynamicArrayEvent()
 
 
+#================================================================================
 # NAIVE CONFLICT DETECTION
-def noConflicts_naive(noConflicts):
+def test_noConflicts_naive(noConflicts):
     # TEST IF NAIVE CONFLICT DETECTION RETURNS EMPTY LIST WHEN NO CONFLICTS
     result = conflict_naive(noConflicts)
     assert result == []
 
-def oneConflicts_naive(withConflicts):
+def test_oneConflict_naive(withConflicts):
     # TEST IF NAIVE CONFLICT DETECTION FINDS 1 CONFLICT PAIR
     result = conflict_naive(withConflicts)
     assert len(result) == 1
 
-def multConflicts_naive(multipleConflicts):
+def test_multConflicts_naive(multipleConflicts):
     # TEST IF NAIVE CONFLICT DETECTION FINDS MULTIPLE CONFLICT PAIRS
     result = conflict_naive(multipleConflicts)
     assert len(result) == 2
 
-def correctEvents_naive(withConflicts):
+def test_correctEvents_naive(withConflicts):
     # TEST IF NAIVE DETECTION RETURNS CORRECT EVENTS IN CONFLICT PAIR
     result = conflict_naive(withConflicts)
     ids_in_conflict = {e.id for pair in result for e in pair}
@@ -74,25 +75,25 @@ def correctEvents_naive(withConflicts):
 
 # OPTIMIZED CONFLICT DETECTION (ALL 3 SORTING ALGORITHMS)
 @pytest.mark.parametrize("sort_func", [insertSort, mergeSort, quickSort])
-def noConflicts_optimized(noConflicts, sort_func):
+def test_noConflicts_optimized(noConflicts, sort_func):
     # TEST IF OPTIMIZED DETECTION RETURNS EMPTY LIST WHEN NO CONFLICTS
     result = conflict_optimized(noConflicts, sort_func)
     assert result == []
 
 @pytest.mark.parametrize("sort_func", [insertSort, mergeSort, quickSort])
-def oneConflict_optimized(withConflicts, sort_func):
+def test_oneConflict_optimized(withConflicts, sort_func):
     # TEST IF OPTIMIZED DETECTION FINDS ONE CONFLICT PAIR
     result = conflict_optimized(withConflicts, sort_func)
     assert len(result) == 1
 
 @pytest.mark.parametrize("sort_func", [insertSort, mergeSort, quickSort])
-def multipleConflicts_optimized(multipleConflicts, sort_func):
+def test_multiConflicts_optimized(multipleConflicts, sort_func):
     # TEST IF OPTIMIZED DETECTION FINDS MULTIPLE CONFLICT PAIRS
     result = conflict_optimized(multipleConflicts, sort_func)
     assert len(result) == 2
 
 @pytest.mark.parametrize("sort_func", [insertSort, mergeSort, quickSort])
-def correctEvents_optimized(withConflicts, sort_func):
+def test_correctEvents_optimized(withConflicts, sort_func):
     # TEST IF OPTIMIZED DETECTION RETURNS CORRECT EVENTS IN CONFLICT PAIR
     result = conflict_optimized(withConflicts, sort_func)
     ids_in_conflict = {e.id for pair in result for e in pair}
@@ -102,23 +103,23 @@ def correctEvents_optimized(withConflicts, sort_func):
 
 
 # UNIFIED conflict() DISPATCHER
-def noSortFunc_useNaive(withConflicts):
+def test_noSortFunc_useNaive(withConflicts):
     # TEST IF conflict() WITH NO sort_func FALLS THROUGH TO NAIVE DETECTION
     result = conflict(withConflicts)
     assert len(result) == 1
 
-def withSortFunc_useOptimized(withConflicts):
+def test_withSortFunc_useOptimized(withConflicts):
     # TEST IF conflict() WITH sort_func USES OPTIMIZED PATH
     result = conflict(withConflicts, sort_func=mergeSort)
     assert len(result) == 1
 
-def agreeTest(withConflicts):
+def test_agreeTest(withConflicts):
     # TEST IF BOTH PATHS FIND SAME NUMBER OF CONFLICTS
     naive_result     = conflict(withConflicts)
     optimized_result = conflict(withConflicts, sort_func=mergeSort)
     assert len(naive_result) == len(optimized_result)
 
-def emptyScheduleTest(emptySchedule):
+def test_emptyScheduleTest(emptySchedule):
     # TEST IF conflict() ON EMPTY SCHEDULE RETURNS NO CONFLICTS 
     assert conflict(emptySchedule) == []
     assert conflict(emptySchedule, sort_func=mergeSort) == []
