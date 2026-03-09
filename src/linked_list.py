@@ -5,7 +5,7 @@ Theoretical Complexities of Operations:
   
 push: Time Complexity O(1) - Pushes Node into front of the Linked List.
 append: Time Complexity O(n) - Inserts Node into end of linked list, will have to traverse through the whole list.
-length: Time Complexity O(n) - Traverses the whole linked list to retrieve length.
+length: Time Complexity O(1) - Returns size at constant time by using a size counter
 get_at: Time Complexity O(n) - Traverses through linked list until it retrieves event at given index.
 insert: Time Complexity O(n) - Traverses linked list, and inserts node into selected index.
 sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
@@ -42,6 +42,8 @@ class EventLinkedList:
       None
     """
     self.head = None
+    # size counter 
+    self.size = 0
 
   # Push Method
   def push(self, event):
@@ -59,6 +61,8 @@ class EventLinkedList:
     newNode.next = self.head
     # New Node becomes head
     self.head = newNode
+    # Increment size 
+    self.size +=1
 
   # Sort Method
   def sort(self, algorithm='mergeSort', key=None):
@@ -119,6 +123,8 @@ class EventLinkedList:
       while temp.next:
         temp = temp.next
       temp.next = newNode
+    # Increment size 
+    self.size +=1
 
   # Length of linked list
   def __len__(self):
@@ -129,18 +135,7 @@ class EventLinkedList:
     RETURNS:
       size - NUMBER OF NODES IN THE LINKED LIST
     """
-    # Size counter set to zero
-    size = 0 
-    # Temporary head
-    temp = self.head
-    # Traverse Linked List
-    while temp != None:
-      # Iterate size counter until it reaches end
-      size += 1 
-      # Move to next node
-      temp = temp.next 
-    # Return size counter
-    return size
+    return self.size
 
   def get_at(self, index):
     """
@@ -216,6 +211,8 @@ class EventLinkedList:
       newNode.next = temp.next
       # Left node is pointing to new node
       temp.next = newNode
+      # Increment size 
+      self.size +=1
 
   # Search by ID method
   def search_by_id(self, target_id):
@@ -262,6 +259,8 @@ class EventLinkedList:
     if temp.event.id == target_id:
       # Remove head by moving head to next node
       self.head = self.head.next
+      # Decrement size 
+      self.size -=1  
       return
 
     # While pointer is not pointing to null
@@ -270,8 +269,10 @@ class EventLinkedList:
       if temp.next.event.id == target_id:
         # Delete target node by pointing to node after it.
         temp.next = temp.next.next
-        # End while loop
+        # Decrement size
+        self.size -=1  
         return
+
       # Continues to next node.
       temp = temp.next
   
