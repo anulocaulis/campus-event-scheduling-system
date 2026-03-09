@@ -249,7 +249,7 @@ class EventLinkedList:
     PARAMS:
       self - LINKED LIST BEING LISTED
     RETURNS:
-      output - STRING OF ALL EVENTS SEPARATED BY ->
+      output - List of all events in linked list.
     """
     # Empty list
     output = []
