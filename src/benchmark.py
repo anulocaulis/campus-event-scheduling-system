@@ -222,7 +222,7 @@ def benchmark_conflict():
             # THEN ITERATE THROUGH ALGORITHM TYPES
             for alg in algos:
                 if alg == "Naive" and n > 5000:
-                    print("skipping brute force conflict detection for n={n} for troubleshooting")
+                    print(f"skipping brute force conflict detection for n={n} for troubleshooting")
                     continue
                 conflict_time = 0
                 for t in range(trials):
