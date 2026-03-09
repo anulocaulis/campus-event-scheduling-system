@@ -78,13 +78,13 @@ def quickSort(myArray, key =None):
         less = []                        # CREATE EMPTY LIST FOR VALS < pivot
         equal = [pivot]                  # CREATE EMPTY LIST FOR VALS = pivot
         more = []                        # CREATE EMPTY LIST FOR VALS > pivot
-        for i in range(1, n):            # CAN EXCLUDE PIVOT IN RANGE
-            if key(myArray[i]) < key(pivot):       # COMPARE myArray[i] TO pivot
-                less.append(myArray[i])  # IF myArray[i] < pivot, APPEND TO less
-            elif key(myArray[i]) == key(pivot):
-                equal.append(myArray[i]) #IF myArray[i] = pivot, APPEND TO equal
+        for i in myArray:            
+            if key(i) < key(pivot):       # COMPARE i TO pivot
+                less.append(i)  # IF i < pivot, APPEND TO less
+            elif key(i) == key(pivot):
+                equal.append(i) # IF i = pivot, APPEND TO equal
             else:
-                more.append(myArray[i])  # IF myArray[i] > pivot, APPEND TO more
+                more.append(i)  # IF i > pivot, APPEND TO more
         sortLess = quickSort(less, key=key) # RECURSIVE CALL TO SORT less
         sortMore = quickSort(more, key=key) # RECURSIVE CALL TO SORT more
 
