@@ -11,7 +11,7 @@ resize: Time Complexity O(n) - Loop to traverse the dynamic array.
                                Resizing method depends on the length of the dynamic array.
 __len__: Time Complexity O(1) - Returns length of list at constant time,
                                 no matter how long dynamic array is.
-get_at_index: Time Complextiy O(1) - Returns event of list at given index,
+get_at: Time Complextiy O(1) - Returns event of list at given index,
                                     no matter long dynamic array is.
 insert: Time Complexity O(n) - Loops to traverse the dynamic array to 
                                find targeted index to insert event.
@@ -78,8 +78,9 @@ class DynamicArrayEvent:
       i += 1
     # Provides new array with old array values.
     self.array = new_array
+
   # Get at index method
-  def get_at_index(self, index):
+  def get_at(self, index):
       """
       Returns event at given index
       PARAMS:
@@ -87,9 +88,11 @@ class DynamicArrayEvent:
           index - Position where event is returned from
       RETURNS:
           event - Returns event at given index.
+      RAISES:
+          ValueError - If index is out of bounds.
       """
-       # Raise
-      if index > self.size or index < 0:
+      # Raise
+      if index >= self.size or index < 0:
           raise ValueError("This index is out of bounds.")
       
       # Return Event at given index
