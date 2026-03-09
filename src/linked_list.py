@@ -87,17 +87,17 @@ class EventLinkedList:
     # SORTING THE ARRAY
     from sorting import insertSort, mergeSort, quickSort
     if algorithm == 'insertSort':
-      sorted = insertSort(arr, key=key)
+      sortedArr = insertSort(arr, key=key)
     elif algorithm == 'mergeSort':
-      sorted = mergeSort(arr, key=key)
+      sortedArr = mergeSort(arr, key=key)
     elif algorithm == 'quickSort':
-      sorted = quickSort(arr, key=key)
+      sortedArr = quickSort(arr, key=key)
     else:
       raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
     
     # CONVERT SORTED ARRAY BACK INTO LINKED LIST NODES
     temp = self.head
-    for event in sorted:
+    for event in sortedArr:
       temp.event = event
       temp = temp.next
 
