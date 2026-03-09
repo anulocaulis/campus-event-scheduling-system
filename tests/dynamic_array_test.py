@@ -52,7 +52,7 @@ def test_search_by_id(da):
     assert result == sample_array.hhour
 
 def test_search_by_id_none(da):
-    """ Tests for search_by_id method when id is not in linked list. """
+    """ Tests for search_by_id method when id is not in dynamic array. """
     # Creates dynamic array with events from sample_array
     for event in sample_array.friday:
         da.append(event)
