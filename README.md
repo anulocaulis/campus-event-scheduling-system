@@ -16,28 +16,28 @@ A lightweight scheduling system for managing campus events — talks, hackathons
 campus-event-scheduling-system/
 │
 ├── src/
-│   ├── event_creator.py          # Event class and unique ID generator
-│   ├── sample_array.py           # Hardcoded test events for development/testing
-│   ├── randEvent.py              # Random event generator for benchmark testing
-│   ├── dynamic_array.py          # Array-based event storage (DynamicArrayEvent)
-│   ├── linked_list.py            # Linked list event storage (EventLinkedList)
-│   ├── converter.py              # Converts linked list to plain Python list
-│   ├── sorting.py                # Insertion Sort, Merge Sort, Quick Sort
-│   ├── searching.py              # Linear Search, Binary Search
-│   ├── conflict.py               # Naive O(n²) and optimized O(n log n) conflict detection
-│   ├── benchmark.py              # Timing experiments across all algorithms and structures
-│   ├── plot.py                   # CSV export and matplotlib plotting of benchmark results
-│   └── scalability-challenge.py  # Memory estimation and scalability analysis at n=1,000,000
+│   ├── event_creator.py          # EVENT CLASS AND UNIQUE ID GENERATOR
+│   ├── sample_array.py           # HARDCODED TEST EVENTS FOR DEVELOPMENT/TESTING
+│   ├── randEvent.py              # RANDOM EVENT GENERATOR FOR BENCHMARK TESTING
+│   ├── dynamic_array.py          # ARRAY-BASED EVENT STORAGE (DYNAMIC)
+│   ├── linked_list.py            # LINKED LIST EVENT STORAGE
+│   ├── converter.py              # CONVERTS LINKED LIST TO PLAIN PYTHON LIST
+│   ├── sorting.py                # INSERTION SORT, MERGE SORT, QUICK SORT
+│   ├── searching.py              # LINEAR SEARCH, BINARY SEARCH
+│   ├── conflict.py               # NAIVE O(n²) AND OPTIMIZED O(n log n) CONFLICT DETECTION
+│   ├── benchmark.py              # TIMING EXPERIMENTS ACROSS ALL ALGORITHMS AND DATA STRUCTURES
+│   ├── plot.py                   # CSV EXPORT AND MATPLOTLIB PLOTTING OF BENCHMARK RESULTS
+│   └── scalability-challenge.py  # MEMORY ESTIMATION AND SCALABILITY ANALYSIS AT n=1000000
 │
 ├── tests/
-│   ├── dynamic_array_test.py     # pytest suite for DynamicArrayEvent
-│   ├── linked_list_test.py       # pytest suite for EventLinkedList
-│   ├── sorting_test.py           # pytest suite for all three sorting algorithms
-│   ├── searching_test.py         # pytest suite for linear and binary search
-│   └── conflict_test.py          # pytest suite for conflict detection
+│   ├── dynamic_array_test.py     # PYTEST SUITE FOR DynamicArrayEvent
+│   ├── linked_list_test.py       # PYTEST SUITE FOR EventLinkedList
+│   ├── sorting_test.py           # PYTEST SUITE FOR 3 SORTING ALGORITHMS
+│   ├── searching_test.py         # PYTEST SUITE FOR LINEAR/BINARY SEARCH
+│   └── conflict_test.py          # PYTEST SUITE FOR CONFLICT DETECTION
 │
-├── GP1_Beitner_Echeverry_Taylor.ipynb   # Final report notebook
-├── requirements.txt
+├── GP1_Beitner_Echeverry_Taylor.ipynb    # FINAL REPORT NOTEBOOK
+├── requirements.txt                      # REQUIREMENTS USED TO RUN PROJECT
 ├── .gitignore
 └── README.md
 ```
