@@ -2,7 +2,6 @@
 # COMPLEXITY: O(n log n) - SORTS FIRST, THEN SINGLE PASS COMPARISON
 
 import sorting
-import benchmark
 from event_creator import Event
 
 def conflict_naive(events):
