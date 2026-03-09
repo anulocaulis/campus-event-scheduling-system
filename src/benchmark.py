@@ -104,7 +104,7 @@ def benchmark_sorting():
 
             # TESTING LINKED LIST STRUCTURE            
             linkedTime = 0
-            for trial in range(trials):
+            for t in range(trials):
                 deepCop = copy.deepcopy(baseEvents)
                 ll = loadLinked(deepCop)
 
@@ -130,7 +130,7 @@ def benchmark_searching():
             results["linear"]["unsorted"][n] = avg_seconds
             results["linear"]["sorted"][n]   = avg_seconds
             results["binary"]["sorted"][n]   = avg_seconds
-            (CAN'T TEST BINARY SEARCH ON UNSORTED)
+            (CAN'T REALLY TEST BINARY SEARCH ON UNSORTED)
 
     """
 
@@ -222,7 +222,7 @@ def benchmark_conflict():
             # THEN ITERATE THROUGH ALGORITHM TYPES
             for alg in algos:
                 if alg == "Naive" and n > 5000:
-                    print("skipping brute force conflict detection for n={n} for troubleshooting")
+                    print(f"skipping brute force conflict detection for n={n} for troubleshooting")
                     continue
                 conflict_time = 0
                 for t in range(trials):

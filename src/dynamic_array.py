@@ -11,6 +11,8 @@ resize: Time Complexity O(n) - Loop to traverse the dynamic array.
                                Resizing method depends on the length of the dynamic array.
 __len__: Time Complexity O(1) - Returns length of list at constant time,
                                 no matter how long dynamic array is.
+get_at: Time Complextiy O(1) - Returns event of list at given index,
+                                    no matter long dynamic array is.
 insert: Time Complexity O(n) - Loops to traverse the dynamic array to 
                                find targeted index to insert event.
 sort: Time Complexity O(nlogn) - average for mergeSort and quickSort
@@ -76,7 +78,27 @@ class DynamicArrayEvent:
       i += 1
     # Provides new array with old array values.
     self.array = new_array
-  
+
+  # Get at index method
+  def get_at(self, index):
+      """
+      Returns event at given index
+      PARAMS:
+          self - Array, where event is being returned from
+          index - Position where event is returned from
+      RETURNS:
+          event - Returns event at given index.
+      RAISES:
+          ValueError - If index is out of bounds.
+      """
+      # Raise
+      if index >= self.size or index < 0:
+          raise ValueError("Index is out of bounds.")
+      
+      # Return Event at given index
+      return self.array[index]
+
+
   # Append method
   def append(self, event):
     """
@@ -113,7 +135,7 @@ class DynamicArrayEvent:
       self.resize()
     # Raise
     if index > self.size or index < 0:
-      raise ValueError("This index is out of bounds.")
+      raise ValueError("Index is out of bounds.")
     # SHIFT ELEMENTS TO RIGHT 1 SPACE
     i = self.size
     while i > index:
@@ -190,16 +212,16 @@ class DynamicArrayEvent:
     # ALL EVENTS IN PLAIN PYTHON LIST FOR SORTING
     arr = self.list_all()
     if algorithm == 'insertSort':
-      sorted = sorting.insertSort(arr, key=key)
+      sortedArr = sorting.insertSort(arr, key=key)
     elif algorithm == 'mergeSort':
-      sorted = sorting.mergeSort(arr, key=key)
+      sortedArr = sorting.mergeSort(arr, key=key)
     elif algorithm == 'quickSort':
-      sorted = sorting.quickSort(arr, key=key)
+      sortedArr = sorting.quickSort(arr, key=key)
     else:
       raise ValueError(f"Unknown algorithm '{algorithm}'. Choose 'insertSort', 'mergeSort', or 'quickSort'")
     
     # WRITING SORTED EVENTS BACK INTO THE INTERNAL ARRAY
-    for i, event in enumerate(sorted):
+    for i, event in enumerate(sortedArr):
       self.array[i] = event
 
   # Lists all events in dynamic array.
