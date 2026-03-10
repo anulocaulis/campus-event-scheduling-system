@@ -131,81 +131,84 @@ python plot.py
 
 ### Conflicts
 
-- **Dynamic Array**
+#### **Dynamic Array**
 
-    - **Naive**
+**Naive Results**
+  
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000273 seconds| 
+| 500      | 0.009020 seconds| 
+| 5000     | 0.875134 seconds| 
+
+**insertSort Results**
     
-        - **Results**
-            - N = 100: Time $\approx$ 0.000273 seconds
-            - N = 500: Time $\approx$ 0.009020 seconds
-            - N = 5000: Time $\approx$ 0.8751348999794573 seconds
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.001259 seconds| 
+| 500      | 0.024550 seconds| 
+| 5000     | 2.981901 seconds| 
+| 50000    | 15.428314 seconds| 
 
-  - **insertSort**
+
+**mergesort Results**
     
-    - **Results**
-      - N = 100: Time $\approx$ 0.001259 seconds
-      - N = 500: Time $\approx$ 0.024550 seconds
-      - N = 5000: Time $\approx$ 2.981901 seconds
-      - N = 10000: Time $\approx$ 15.428314 seconds
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000501 seconds| 
+| 500      | 0.002552 seconds| 
+| 5000     | 0.035535 seconds| 
+| 50000    | 0.088872 seconds| 
+
+**quicksort Results**
+
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000603 seconds| 
+| 500      | 0.003960 seconds| 
+| 5000     | 0.050319 seconds| 
+| 50000    | 0.135598 seconds| 
 
 
-    - **mergesort**
+#### **LinkedList**
+
+ **Naive Results**
+
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000299 seconds| 
+| 500      | 0.009040 seconds| 
+| 5000     | 0.923255 seconds| 
+
+
+**insertSort Results**
     
-      - **Results**
-        - N = 100: Time $\approx$ 0.000501 seconds
-        - N = 500: Time $\approx$ 0.002552 seconds
-        - N = 5000: Time $\approx$ 0.035535 seconds
-        - N = 50000: Time $\approx$ 0.088872 seconds
-
-
-  - **quicksort**
-
-    - **Results** 
-      - N = 100: Time $\approx$ 0.000603 seconds
-      - N = 500: Time $\approx$ 0.003960 seconds
-      - N = 5000: Time $\approx$ 0.050319 seconds
-      - N = 50000: Time $\approx$ 0.135598 seconds
-    
-
-
-- **LinkedList**:
-
-
-  - **Naive**
-
-    - **Results**
-      - N = 100: Time $\approx$ 0.000299 seconds
-      - N = 500: Time $\approx$ 0.009040 seconds
-      - N = 50000: Time $\approx$ 0.923255 seconds
-
-  - **insertSort**
-    
-    - **Results**
-      - N = 100: Time $\approx$ 0.001201 seconds
-      - N = 500: Time $\approx$ 0.025884 seconds
-      - N = 5000: Time $\approx$ 3.000228 seconds
-      - N = 50000: Time $\approx$ 14.444262 seconds
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.001201 seconds| 
+| 500      | 0.025884 seconds| 
+| 5000     | 3.000228 seconds| 
+| 50000    | 14.444262 seconds|
 
 
 
 
-  - **mergesort**
-    
-    - **Results**
-      - N = 100: Time $\approx$ 0.000436 seconds
-      - N = 500: Time $\approx$ 0.002924 seconds
-      - N = 5000: Time $\approx$ 0.035358 seconds
-      - N = 50000: Time $\approx$ 0.090099 seconds
+**mergesort Results**
 
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000436 seconds| 
+| 500      | 0.002924 seconds| 
+| 5000     | 0.035358 seconds| 
+| 50000    | 0.090099 seconds|
 
-  - **quicksort**
-
-    - **Results** 
-      - N = 100: Time $\approx$ 0.000626 seconds
-      - N = 500: Time $\approx$ 0.003825 seconds
-      - N = 5000: Time $\approx$ 0.052843 seconds
-      - N = 50000: Time $\approx$ 0.139516 seconds
-
+**quicksort Results**
+| N        | Time(seconds) | 
+| ------------- |:----------:|
+| 100      | 0.000626 seconds| 
+| 500      | 0.003825 seconds| 
+| 5000     | 0.052843 seconds| 
+| 50000    | 0.139516 seconds|
 
   
 ### Sorted
