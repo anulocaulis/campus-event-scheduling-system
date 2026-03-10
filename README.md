@@ -110,7 +110,7 @@ python plot.py
 | Member | Primary Contributions |
 |---|---|
 | **Mike Beitner** | Conflict detection algorithms (`conflict.py`), benchmark result analysis, plotting (`plot.py`), scalability analysis (`scalability-challenge.py`) |
-| **Luis Echeverry** | Data structure backends (`dynamic_array.py`, `linked_list.py`) |
+| **Luis Echeverry** | Data structure backends (`dynamic_array.py`, `linked_list.py`), ('dynamic_array_test.py', 'linked_list_test.py') |
 | **Christopher Taylor** | Sorting algorithms (`sorting.py`), searching algorithms (`searching.py`), benchmark infrastructure (`benchmark.py`), full pytest suite (`tests/`), `event_creator.py`, `randEvent.py`, `converter.py`, `sample_array.py` |
 
 ---
