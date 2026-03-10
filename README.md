@@ -129,7 +129,173 @@ python plot.py
 
 ## Results Summary
 
-*(To be completed after benchmark runs and plots are generated.)*
+### Conflicts
+
+- **Dynamic Array**
+
+    - **Naive**
+    
+        - **Results**
+            - N = 100: Time $\approx$ 0.000273 seconds
+            - N = 500: Time $\approx$ 0.009020 seconds
+            - N = 5000: Time $\approx$ 0.8751348999794573 seconds
+
+  - **insertSort**
+    
+    - **Results**
+      - N = 100: Time $\approx$ 0.001259 seconds
+      - N = 500: Time $\approx$ 0.024550 seconds
+      - N = 5000: Time $\approx$ 2.981901 seconds
+      - N = 10000: Time $\approx$ 15.428314 seconds
+
+
+    - **mergesort**
+    
+      - **Results**
+        - N = 100: Time $\approx$ 0.000501 seconds
+        - N = 500: Time $\approx$ 0.002552 seconds
+        - N = 5000: Time $\approx$ 0.035535 seconds
+        - N = 50000: Time $\approx$ 0.088872 seconds
+
+
+  - **quicksort**
+
+    - **Results** 
+      - N = 100: Time $\approx$ 0.000603 seconds
+      - N = 500: Time $\approx$ 0.003960 seconds
+      - N = 5000: Time $\approx$ 0.050319 seconds
+      - N = 50000: Time $\approx$ 0.135598 seconds
+    
+
+
+- **LinkedList**:
+
+
+  - **Naive**
+
+    - **Results**
+      - N = 100: Time $\approx$ 0.000299 seconds
+      - N = 500: Time $\approx$ 0.009040 seconds
+      - N = 50000: Time $\approx$ 0.923255 seconds
+
+  - **insertSort**
+    
+    - **Results**
+      - N = 100: Time $\approx$ 0.001201 seconds
+      - N = 500: Time $\approx$ 0.025884 seconds
+      - N = 5000: Time $\approx$ 3.000228 seconds
+      - N = 50000: Time $\approx$ 14.444262 seconds
+
+
+
+
+  - **mergesort**
+    
+    - **Results**
+      - N = 100: Time $\approx$ 0.000436 seconds
+      - N = 500: Time $\approx$ 0.002924 seconds
+      - N = 5000: Time $\approx$ 0.035358 seconds
+      - N = 50000: Time $\approx$ 0.090099 seconds
+
+
+  - **quicksort**
+
+    - **Results** 
+      - N = 100: Time $\approx$ 0.000626 seconds
+      - N = 500: Time $\approx$ 0.003825 seconds
+      - N = 5000: Time $\approx$ 0.052843 seconds
+      - N = 50000: Time $\approx$ 0.139516 seconds
+
+
+  
+### Sorted
+
+- **Insertion**:
+
+  - **Dynamic Array**
+
+    - **Results**
+      - N = 50: Time $\approx$ 0.000159 seconds
+      - N = 500: Time $\approx$ 0.016448 seconds
+      - N = 5000: Time $\approx$ 0.016448 seconds
+      - N = 50000: Time $\approx$ 245.254482 seconds
+
+  - **Linked List**
+
+    - **Results**
+      - N = 50: Time $\approx$ 0.000434 seconds
+      - N = 500: Time $\approx$ 0.015448 seconds
+      - N = 5000: Time $\approx$ 1.596537 seconds
+      - N = 50000: Time $\approx$ 458.777888 seconds
+            
+    
+- **Merge**:
+  
+  - **Dynamic Array**
+
+    - **Results**
+      - N = 50: Time $\approx$ 9.846667e-05 seconds
+      - N = 500: Time $\approx$ 0.001654 seconds
+      - N = 5000: Time $\approx$ 0.019559 seconds
+      - N = 50000: Time $\approx$ 0.458003 seconds
+
+  - **Linked List**
+  
+    - **Results**
+      - N = 50: Time $\approx$ 9.720000e-05 seconds
+      - N = 500: Time  $\approx$ 0.001579 seconds
+      - N = 5000: Time $\approx$ 0.019411 seconds
+      - N = 50000: Time $\approx$ 0.4227471seconds
+
+- **Quick**:
+  
+    - **Dynamic Array**
+
+        - **Results**
+            - N = 50 : Time $\approx$ 0.000133 seconds
+            - N = 500: Time  $\approx$ 0.002192 seconds 
+            - N = 5000: Time $\approx$ 0.027317 seconds
+            - N = 50000: Time $\approx$ 0.697710 seconds
+     
+
+  - **Linked List**
+    
+    - **Results**
+      - N = 50 : Time $\approx$ 0.000133 seconds
+      - N = 500: Time  $\approx$ 0.002020 seconds
+      - N = 5000: Time $\approx$ 0.027627 seconds
+      - N = 50000: Time $\approx$ 0.787503 seconds
+ 
+
+
+       
+
+### Search
+- **Linear Unsorted**
+
+  - **Results** 
+    - N = 50 : Time $\approx$ 0.000179 seconds
+    - N = 500: Time  $\approx$ 0.000200 seconds 
+    - N = 5000: Time $\approx$ 0.000686 seconds
+    - N = 50000: Time $\approx$ 0.004487 seconds
+
+
+- **Linear Sorted**
+ 
+  - **Results** 
+    - N = 50 : Time $\approx$ 0.000339 seconds
+    - N = 500: Time  $\approx$ 0.000257 seconds
+    - N = 5000: Time $\approx$ 0.000972 seconds
+    - N = 50000: Time $\approx$ 0.010381 seconds
+
+
+- **Binary Sorted**:
+
+  - **Results** 
+    - N = 50 : Time $\approx$ 0.000262 seconds
+    - N = 500: Time  $\approx$ 0.000222 seconds
+    - N = 5000: Time $\approx$ 0.000241 seconds
+    - N = 50000: Time $\approx$ 0.000250 seconds
 
 ---
 
