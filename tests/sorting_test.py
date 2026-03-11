@@ -1,11 +1,11 @@
 # TESTING FOR THE SORTING ALGORITHMS
-
+# USING PYTEST TO VALIDATE INSERTION, MERGE, AND QUICK SORT ON EVENT OBJECTS
 from sorting import insertSort, mergeSort, quickSort
 from event_creator import Event
 import sample_array
 import pytest
 
-# FIXTURES
+# FIXTURES: PRECONFIGURED EVENT LISTS FOR TESTING SORTS
 @pytest.fixture
 def unsortedEvents():
     # RETURNS UNSORTED COPY OF friday LIST FOR EACH TEST
@@ -30,7 +30,7 @@ def sortedOrder():
 
 @pytest.fixture
 def singleEvent():
-    # LIST WITH ONE EVENT. SHOULD BE SORTED WITHOUT ISSUE
+    # LIST WITH ONE EVENT TO TEST SORTING EDGE CASE
     return [sample_array.brunch]
 
 @pytest.fixture
