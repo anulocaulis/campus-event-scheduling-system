@@ -91,7 +91,7 @@ def quickSort(myArray, key=None):
         # LIST FOR ELEMENTS SMALLER THAN PIVOT
         less = []
         # LIST FOR ELEMENTS EQUAL TO PIVOT
-        equal = [pivot]
+        equal = []
         # LIST FOR ELEMENTS GREATER THAN PIVOT
         more = []
         # PARTITION ORIGINAL ARRAY INTO THREE GROUPS
