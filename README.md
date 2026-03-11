@@ -110,7 +110,7 @@ python plot.py
 | Member | Primary Contributions |
 |---|---|
 | **Mike Beitner** | Conflict detection algorithms (`conflict.py`), benchmark result analysis, plotting (`plot.py`), scalability analysis (`scalability-challenge.py`) |
-| **Luis Echeverry** | Data structure backends (`dynamic_array.py`, `linked_list.py`), ('dynamic_array_test.py', 'linked_list_test.py') |
+| **Luis Echeverry** | Data structure backends (`dynamic_array.py`, `linked_list.py`), data structure pytests (`dynamic_array_test.py`, `linked_list_test.py`) |
 | **Christopher Taylor** | Sorting algorithms (`sorting.py`), searching algorithms (`searching.py`), benchmark infrastructure (`benchmark.py`), full pytest suite (`tests/`), `event_creator.py`, `randEvent.py`, `converter.py`, `sample_array.py` |
 
 ---
@@ -129,198 +129,66 @@ python plot.py
 
 ## Results Summary
 
-### Conflicts
-Summary: 
-
-#### **Dynamic Array**
-
-- **Naive Results**
-  
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000273 seconds| 
-| 500      | 0.009020 seconds| 
-| 5000     | 0.875134 seconds| 
-
-- **insertSort Results**
-    
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.001259 seconds| 
-| 500      | 0.024550 seconds| 
-| 5000     | 2.981901 seconds| 
-| 50000    | 15.428314 seconds| 
+### Conflict Results
 
 
-- **mergesort Results**
-    
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000501 seconds| 
-| 500      | 0.002552 seconds| 
-| 5000     | 0.035535 seconds| 
-| 50000    | 0.088872 seconds| 
+*Dynamic Arrays*
 
-- **quicksort Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000603 seconds| 
-| 500      | 0.003960 seconds| 
-| 5000     | 0.050319 seconds| 
-| 50000    | 0.135598 seconds| 
+| N | Naive | Insertion Sort | Merge Sort | Quick Sort|
+|---|---|---|---| ---|
+|100|0.000273 seconds|0.001259 seconds|0.000501 seconds|0.000603 seconds|
+|500|0.009020 seconds|0.024550 seconds|0.002552 seconds|0.003960 seconds|
+|5000|0.875134 seconds|2.981901 seconds|0.035535 seconds|0.050319 seconds|
+|50000|**N/A**|15.428314 seconds|0.088872 seconds|0.135598 seconds|
 
 
 
+*Linked Lists*
 
-#### **LinkedList**
-
-- **Naive Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000299 seconds| 
-| 500      | 0.009040 seconds| 
-| 5000     | 0.923255 seconds| 
-
-
-- **insertSort Results**
-    
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.001201 seconds| 
-| 500      | 0.025884 seconds| 
-| 5000     | 3.000228 seconds| 
-| 50000    | 14.444262 seconds|
-
-
-
-
-- **mergesort Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000436 seconds| 
-| 500      | 0.002924 seconds| 
-| 5000     | 0.035358 seconds| 
-| 50000    | 0.090099 seconds|
-
-- **quicksort Results**
-  
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 100      | 0.000626 seconds| 
-| 500      | 0.003825 seconds| 
-| 5000     | 0.052843 seconds| 
-| 50000    | 0.139516 seconds|
-
+| N | Naive | Insertion Sort | Merge Sort | Quick Sort|
+|---|---|---|---| ---|
+|100|0.000299 seconds|0.001201 seconds|0.000436 seconds|0.000626 seconds|
+|500|0.009040 seconds|0.025884 seconds|0.002924 seconds|0.003825 seconds|
+|5000|0.923255 seconds|3.000228 seconds|0.035358 seconds|0.052843 seconds|
+|50000|**N/A**|14.444262 seconds|0.090099 seconds|0.139516 seconds|
 ---
 
-### Sorted
-
-Summary:
-
-#### Insertion
-
-- **Dynamic Array Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000159 seconds| 
-| 500      | 0.016448 seconds| 
-| 5000     | 1.584436 seconds| 
-| 50000    | 0.139516 seconds|
-
-- **Linked List Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000434 seconds| 
-| 500      | 0.015448 seconds| 
-| 5000     | 1.596537 seconds| 
-| 50000    | 458.777888 seconds|
-            
-    
-#### Merge
-  
-- **Dynamic Array Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 9.846667e-05 seconds| 
-| 500      | 0.001654 seconds| 
-| 5000     | 0.019559 seconds| 
-| 50000    | 0.458003 seconds|
-
-- **Linked List Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 9.720000e-05 seconds| 
-| 500      | 0.001579 seconds| 
-| 5000     | 0.019411 seconds| 
-| 50000    | 0.4227471seconds|
+### Sorted Results
 
 
 
-#### Quick
-  
-- **Dynamic Array Results**
+*Dynamic Array*
+
+| N | Insertion Sort | Merge Sort | Quick Sort |
+|---|---|---|---|
+| 50 | 0.000159 seconds | 9.846667e-05 seconds | 0.000133 seconds |
+| 500 | 0.016448 seconds|0.001654 seconds | 0.002192 seconds | 
+| 5000 | 1.584436 seconds | 0.019559 seconds | 0.027317 seconds |
+| 50000 |245.254482 seconds  | 0.458003 seconds | 0.697710 seconds | 
 
 
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000133 seconds| 
-| 500      | 0.002192 seconds| 
-| 5000     | 0.027317 seconds| 
-| 50000    | 0.697710 seconds|
-     
 
-- **Linked List Results**
+*Linked List*
 
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000133 seconds| 
-| 500      | 0.002020 seconds| 
-| 5000     | 0.027627 seconds| 
-| 50000    | 0.787503 seconds|
-
+| N | Insertion Sort | Merge Sort | Quick Sort |
+|---|---|---|---|
+| 50 | 0.000434 seconds | 9.720000e-05 seconds | 0.000137 seconds |
+| 500 | 0.015448 seconds|0.001579 seconds | 0.002020 seconds | 
+| 5000 | 1.596537 seconds |0.019411 seconds | 0.027627 seconds |
+| 50000 |458.777888 seconds  | 0.4227471seconds | 0.787503 seconds | 
 ---
 
-### Search
+### Search Results
 
-Summary:
-
-- **Linear Unsorted Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000179 seconds| 
-| 500      | 0.000200 seconds | 
-| 5000     | 0.000686 seconds| 
-| 50000    | 0.004487 seconds|
+*Searching Algorithms*
 
 
-- **Linear Sorted Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000339 seconds| 
-| 500      | 0.000257 seconds | 
-| 5000     | 0.000972 seconds| 
-| 50000    | 0.010381 seconds|
- 
-
-
-- **Binary Sorted Results**
-
-| N        | Time(seconds) | 
-| ------------- |:----------:|
-| 50      | 0.000262 seconds| 
-| 500      | 0.000222 seconds | 
-| 5000     | 0.000241 seconds| 
-| 50000    | 0.000250 seconds|
-
+| N | Unsorted Linear Search |Sorted Linear Search | Binary Search |
+|---|---|---|---|
+| 50 | 0.000179 seconds | 0.000339 seconds | 0.000262 seconds |
+| 500 | 0.000200 seconds|0.000257 seconds | 0.000222 seconds | 
+| 5000 | 0.000686 seconds | 0.000972 seconds | 0.000241 seconds |
+| 50000 |0.004487 seconds  | 0.010381 seconds | 0.000250 seconds | 
 
 
 ## Notes
