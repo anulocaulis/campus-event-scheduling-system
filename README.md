@@ -139,7 +139,7 @@ python plot.py
 |100|0.000273 seconds|0.001259 seconds|0.000501 seconds|0.000603 seconds|
 |500|0.009020 seconds|0.024550 seconds|0.002552 seconds|0.003960 seconds|
 |5000|0.875134 seconds|2.981901 seconds|0.035535 seconds|0.050319 seconds|
-|50000|**N/A**|15.428314 seconds|0.088872 seconds|0.135598 seconds|
+|10000|**N/A**|15.428314 seconds|0.088872 seconds|0.135598 seconds|
 
 
 
@@ -150,7 +150,7 @@ python plot.py
 |100|0.000299 seconds|0.001201 seconds|0.000436 seconds|0.000626 seconds|
 |500|0.009040 seconds|0.025884 seconds|0.002924 seconds|0.003825 seconds|
 |5000|0.923255 seconds|3.000228 seconds|0.035358 seconds|0.052843 seconds|
-|50000|**N/A**|14.444262 seconds|0.090099 seconds|0.139516 seconds|
+|10000|**N/A**|14.444262 seconds|0.090099 seconds|0.139516 seconds|
 ---
 
 ### Sorted Results
