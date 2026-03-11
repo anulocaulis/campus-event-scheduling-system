@@ -9,7 +9,7 @@ import pytest
 @pytest.fixture
 
 def da():
-    """ Provides fresh instance of the DynamicArrayEvent class and cleans up after test. """
+    """ Provides fresh empty instance of the DynamicArrayEvent class for each test. """
     return DynamicArrayEvent()
 
 def test_insert_event(da):
