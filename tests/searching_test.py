@@ -1,5 +1,5 @@
 # TESTING FOR THE SEARCHING ALGORITHMS
-
+# USING PYTEST TO VALIDATE LINEAR AND BINARY SEARCH ON ARRAYS AND LINKED LISTS
 from searching import linear, binary
 from sorting import quickSort
 from linked_list import EventLinkedList
@@ -7,20 +7,29 @@ import sample_array
 import pytest
 
 
-# FIXTURES
+# FIXTURES: SET UP PRECONFIGURED EVENT LISTS AND LINKED LISTS
 @pytest.fixture
 def sortedFriday():
-    # RETURNS COPY OF friday LIST SORTED BY id (FOR BINARY SEARCH)
+    '''
+    RETURNS COPY OF 'friday' LIST SORTED BY id
+    USED FOR BINARY SEARCH SINCE BINARY REQUIRES SORTED INPUT
+    '''
     return quickSort(list(sample_array.friday), key=lambda e: e.id)
 
 @pytest.fixture
 def unsortedFriday():
-    # RETURNS COPY OF friday LIST AS-IS (INSERTED IN id ORDER)
+    '''
+    RETURNS COPY OF 'friday' LIST IN ORIGINAL INSERTION ORDER
+    USED FOR LINEAR SEARCH TESTING
+    '''
     return list(sample_array.friday)
 
 @pytest.fixture
 def sortedLinkedList():
-    # RETURNS LINKED LIST WITH friday EVENTS SORTED BY id
+    '''
+    RETURNS LINKED LIST VERSION OF 'friday' EVENTS SORTED BY id
+    TO TEST SEARCH FUNCTIONS' ABILITY TO HANDLE LINKED LIST INPUT
+    '''
     ll = EventLinkedList()
     for event in quickSort(list(sample_array.friday), key=lambda e: e.id):
         ll.append(event)
@@ -28,7 +37,10 @@ def sortedLinkedList():
 
 @pytest.fixture
 def unsortedLinkedList():
-    # RETURNS LINKED LIST WITH friday EVENTS IN DEFAULT ORDER
+    '''
+    RETURNS LINKED LIST VERSION OF 'friday' EVENTS IN DEFAULT ORDER
+    USED TO TEST LINEAR SEARCH ON LINKED LIST INPUT
+    '''
     ll = EventLinkedList()
     for event in sample_array.friday:
         ll.append(event)
@@ -36,7 +48,7 @@ def unsortedLinkedList():
 
 
 
-# LINEAR SEARCH — ARRAY
+# LINEAR SEARCH — ARRAY INPUT TESTS
 def test_findEvent_lin_arr(unsortedFriday):
     # TEST IF LINEAR SEARCH RETURNS CORRECT INDEX FOR KNOWN EVENT id
     target = sample_array.hhour.id
@@ -63,7 +75,8 @@ def test_firstElem_lin_arr(unsortedFriday):
 
 
 
-# LINEAR SEARCH — LINKED LIST INPUT
+# LINEAR SEARCH — LINKED LIST INPUT TESTS
+# ENSURES LINKED LISTS ARE PROPERLY CONVERTED TO ARRAYS
 def test_converter_lin_ll(unsortedLinkedList):
     # TEST IF LINEAR WORKS WHEN PASSED A LINKED LIST (CONVERSION)
     target = sample_array.hhour.id
@@ -77,7 +90,7 @@ def test_notFound_lin_ll(unsortedLinkedList):
 
 
 
-# BINARY SEARCH — ARRAY
+# BINARY SEARCH — ARRAY INPUT TESTS
 def test_findEvent_bin_arr(sortedFriday):
     # TEST IF BINARY RETURNS CORRECT INDEX FOR KNOWN EVENT id
     target = sample_array.hhour.id
@@ -119,7 +132,8 @@ def test_custom_bin_arr(sortedFriday):
 
 
 
-# BINARY SEARCH — LINKED LIST INPUT
+# BINARY SEARCH — LINKED LIST INPUT TESTS
+# ENSURES LINKED LISTS ASRE PROPERLY CONVERTED TO ARRAYS
 def test_converter_bin_ll(sortedLinkedList):
     # TEST IF BINARY WORKS WHEN PASSED LINKED LIST (CONVERSION)
     target = sample_array.hhour.id
