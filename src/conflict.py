@@ -4,6 +4,9 @@
 import sorting
 from event_creator import Event
 
+# NAIVE CONFLICT DETECTION IMPLEMENTATION
+# COMPARES EVERY EVENT WITH EVERY OTHER EVENT TO FIND MATCHING LOCATION, DATE, AND TIME
+# THIS IMPLEMENTATION DOES NOT SORT AND THEREFORE HAS O(n^2) TIME COMPLEXITY
 def conflict_naive(events):
     """
     CHECKS IF EVENTS OVERLAP ON THE SAME LOCATION/DATE-TIME
@@ -14,25 +17,35 @@ def conflict_naive(events):
     RETURNS:
         conflicts - LIST OF CONFLICTNG EVENT LISTS
     """
-    # DEFINE DATA FROM EVENT LIST AS .list_all
+    
+    # EXTRACT UNDERLYING EVENT DATA FROM THE CONTAINER USING list_all()
+    # THIS RETURNS A STANDARD PYTHON LIST OF Event OBJECTS
     data = events.list_all()
 
-    # EMPTY LIST OF CONFLICT LISTS
+    # INITIALIZE EMPTY LIST THAT WILL STORE PAIRS OF CONFLICTING EVENTS
     conflicts = []
         
-    # NUMBER OF EVENTS
+    # STORE TOTAL NUMBER OF EVENTS FOR LOOP ITERATION
     n = len(data)
 
-    # ITERATE THROUGH EVENTS, COMPARE LOCATION THEN DATE THEN TIME
+    # DOUBLE NESTED LOOP IMPLEMENTS BRUTE FORCE COMPARISON
+    # EACH EVENT IS COMPARED AGAINST ALL EVENTS AFTER IT IN THE LIST
     for i in range(n):
         for j in range(i + 1, n):
+            # FIRST CHECK SAME LOCATION
             if data[i].location == data[j].location:
+                # THEN CHECK THE SAME DATE
                 if data[i].date == data[j].date:
+                    # FINALLY CHECK SAME TIME
+                    # IF ALL THREE MATCH, THE EVENTS ARE CONSIDERED A CONFLICT
                     if data[i].time == data[j].time:
                         conflicts.append([data[i], data[j]])
 
     return conflicts
 
+# OPTIMIZED CONFLICT DETECTION IMPLEMENTATION
+# SORTS EVENTS FIRST SO POTENTIAL CONFLICTS APPEAR NEXT TO EACH OTHER
+# THEN PERFORMS A SINGLE PASS COMPARING ONLY ADJACENT EVENTS
 def conflict_optimized(events, sort_func):
     """
     OPTIMIZED CONFLICT CHECK. SORTS ACCORDING TO SORT FUNCTION ARG BEFORE
@@ -46,21 +59,32 @@ def conflict_optimized(events, sort_func):
     RETURNS:
         conflicts - LIST OF CONFLICTNG EVENT LISTS
     """
-    # BRING IN EVENTS  WITH LIST_ALL METHOD
+    # EXTRACT EVENT DATA FROM THE CONTAINER STRUCTURE USING list_all()
     data = events.list_all()
-    # SORT BY DATE THEN TIME THEN LOCATION (sortKey) SO CONFLICTS ARE ADJACENT
+    
+    # SORT EVENTS USING HTE PROVIDED SORT FUNCTION
+    # sortKey() RETURNS A COMPOSITE KEY (DATE, TIME, LOCATION) SO EVENTS
+    # WITH IDENTICAL VALUES WILL BECOME ADJACENT AFTER SORTING
     sorted_events = sort_func(data, key = lambda e: e.sortKey())
 
-    # EMPTY LIST READY FOR ADDING CONFLICT PAIRS
+    # INITIALIZE EMPTY LIST TO STORE CONFLICTING EVENT PAIRS
     conflicts = []
-    # ITERATE THROUGH SORTED LIST COMPARING ADJACENT EVENTS FOR CONFLICTS
+    
+    # SINGLE PASS THROUGH THE SORTED LIST
+    # ONLY COMPARE EACH EVENT WITH THE NEXT ONE BECAUSE CONFLICTS WILL NOW BE ADJACENT
     for i in range(len(sorted_events)-1):
         curr = sorted_events[i]
         next = sorted_events[i+1]
+        
+        # IF SORT KEY MATCHES, THE EVENTS SHARE THE SAME DATE, TIME, AND LOCATION
+        # THEREFORE THEY ARE IN CONFLICT
         if curr.sortKey() == next.sortKey():
             conflicts.append((curr, next))
     return conflicts
-                            
+
+# UNIFIED CONFLICT DETECTION INTERFACE
+# THIS FUNCTION ACTS AS A CONTROLLER THAT DECIDES WHICH CONFLICT ALGORITHM TO RUN
+# IF sort_func IS PROVIDED IT RUNS THE OPTIMIZED VERSION, OTHERWISE IT USES THE NAIVE VERSION
 def conflict(events, sort_func=None):
     """
     UNIFIED CONFLICT DETECTION. IF A SORTING FUNCTION IS PROVIDED,
@@ -73,43 +97,18 @@ def conflict(events, sort_func=None):
     RETURNS:
         conflicts - LIST OF CONFLICTNG EVENT LISTS
     """
+    # SELECT WHICH CONFLICT DETECTION STRATEGY TO USE
     if sort_func == None:
         return conflict_naive(events)
     else:
         return conflict_optimized(events, sort_func)
 
-# Mike here -- I replaced this with a global function that can accept sorting functions
-# or brute force conflict detection. see above.
-# def conflict(events):
-#     """
-#     CHECKS IF ANY TWO EVENTS OVERLAP ON THE SAME DATE/TIME/LOCATION
-#     ASSUMES EVENTS WITH SAME DATE/TIME/LOCATION = CONFLICT
-#     PARAMS:
-#         events - LIST OF EVENT OBJECTS
-#     RETURNS:
-#         conflicts - LIST OF CONFLICTING EVENT PAIRS
-#     """
-#     # SORT BY DATE THEN TIME THEN LOCATION (sortKey) SO CONFLICTS ARE ADJACENT
-#     sorted_events = sorting.insertSort(events[:], key=lambda e: e.sortKey())
-
-#     # EMPTY LIST READY FOR ADDING CONFLICT PAIRS
-#     conflicts = []  
-#     i = 0
-#     # ITERATE THROUGH SORTED LIST COMPARING ADJACENT EVENTS FOR CONFLICTS
-#     while i < len(sorted_events) - 1:
-#         curr = sorted_events[i]
-#         next = sorted_events[i + 1]
-#         # CONFLICT IF SAME DATE, SAME TIME, AND SAME LOCATION
-#         if curr.date == next.date and curr.time == next.time and curr.location == next.location:
-#             conflicts.append((curr, next))
-#         i += 1
-
-#     return conflicts
 
 
-# ─────────────────────────────────────────────────────
 # QUICK SMOKE TEST
-# ─────────────────────────────────────────────────────
+# THIS SECTION RUNS A SIMPLE TEST WHEN THE FILE IS EXECUTED DIRECTLY
+# IT BUILDS A MOCK SCHEDULE, ADDS TWO INTENTIONAL CONFLICTING EVENTS,
+# AND RUNS THE OPTIMIZED CONFLICT DETECTION TO VERIFY CORRECT BEHAVIOR
 if __name__ == "__main__":
     import sorting
     from randEvent import genEvents
@@ -117,25 +116,26 @@ if __name__ == "__main__":
     from dynamic_array import DynamicArrayEvent
     from event_creator import Event
 
-    # EMPTY DYNAMIC ARRAY FOR SMOKE TEST
+    # CREATE EMPTY DynamicArrayEvent STRUCTURE FOR TESTING
     mock_sched = DynamicArrayEvent()
 
-    # USING EXISTING 'FRIDAY' EVENTS
+    # LOAD PREDEFINED 'friday' EVENTS INTO THE MOCK SCHEDULE
     for e in friday:
         mock_sched.append(e)
         
-    # MANUALLY CREATE A CONFLICT AND APPEND TO MOCK SCHEDULE
+    # MANUALLY CREATE TWO EVENTS THAT SHARE THE SAME LOCATION, DATE, AND TIME
+    # THESE ARE INTENTIONAL CONFLICTS USED TO VERIFY THE ALGORITHM
     conflict_1 = Event("Rap Battle team tryouts", "2026-11-25", "09:00", "Folsom Field")
     conflict_2 = Event("Rival Football Game", "2026-11-25", "09:00", "Folsom Field")
     mock_sched.append(conflict_1)
     mock_sched.append(conflict_2)
 
-    # RUN CONFLICT DETECTION
+    # RUN OPTIMIZED CONFLICT DETECTION USING mergeSort AS THE SORTING ALGORITHM
     print("Checking mock schedule total events for conflicts")
     total = mock_sched.list_all()
     conflicts = conflict_optimized(mock_sched, sorting.mergeSort)
 
-    # DISPLAY CONFLICTS AND TOTAL LIST
+    # DISPLAY FULL EVENT LIST AND ANY DETECTED CONFLICT PAIRS
     print(mock_sched.list_all())
     print(f"found {len(conflicts)} conflicts:")
     for e1, e2 in conflicts:
