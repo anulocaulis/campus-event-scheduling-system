@@ -1,5 +1,5 @@
 # TESTING FOR CONFLICT DETECTION ALGORITHMS
-
+# USING PYTEST TO VALIDATE NAIVE, OPTIMIZED, AND UNIFIED CONFLICT FUNCTIONS
 from conflict import conflict, conflict_naive, conflict_optimized
 from sorting import insertSort, mergeSort, quickSort
 from dynamic_array import DynamicArrayEvent
@@ -8,10 +8,15 @@ import sample_array
 import pytest
 
 
-# FIXTURES
+# FIXTURES: SET UP PRECONFIGURED DYNAMIC ARRAY EVENTS
 @pytest.fixture
 def noConflicts():
-    # DYNAMIC ARRAY EVENT LOADED WITH friday EVENTS. ALL HAVE DISTINCT TIMES (NO CONFLICTS)
+    '''
+    DYNAMIC ARRAY EVENT LOADED WITH friday EVENTS. 
+    ALL HAVE DISTINCT TIMES AND LOCATIONS (NO CONFLICTS)
+    RETURNS:
+        dyn_arr - DynamicArrayEvent INSTANCE
+    '''
     dyn_arr = DynamicArrayEvent()
     for event in sample_array.friday:
         dyn_arr.append(event)
@@ -19,7 +24,11 @@ def noConflicts():
 
 @pytest.fixture
 def withConflicts():
-    # DYNAMIC ARRAY EVENT WITH 2 EVENTS SHARING SAME DATE/TIME/LOCATION (CONFLICT)
+    '''
+    DYNAMIC ARRAY EVENT WITH 2 EVENTS SHARING SAME DATE/TIME/LOCATION (CONFLICT)
+    RETURNS:
+        dyn_arr - DynamicArrayEvent INSTANCE WITH 1 CONFLICTING EVENT
+    '''
     dyn_arr = DynamicArrayEvent()
     for event in sample_array.friday:
         dyn_arr.append(event)
@@ -30,7 +39,11 @@ def withConflicts():
 
 @pytest.fixture
 def multipleConflicts():
-    # DYNAMIC ARRAY EVENT WITH MULTIPLE CONFLICTS (TWO PAIRS)
+    '''
+    DYNAMIC ARRAY EVENT WITH MULTIPLE CONFLICTS (TWO PAIRS)
+    RETURNS:
+        dyn_arr - DynamicArrayEvent instance
+    '''
     dyn_arr = DynamicArrayEvent()
     for event in sample_array.friday:
         dyn_arr.append(event)
@@ -42,7 +55,9 @@ def multipleConflicts():
 
 @pytest.fixture
 def emptySchedule():
-    # AN EMPTY DYNAMIC ARRAY EVENT (SHOULD HAVE ZERO CONFLICTS)
+    '''
+    RETURNS AN EMPTY DYNAMIC ARRAY (SHOULD HAVE ZERO CONFLICTS)
+    '''
     return DynamicArrayEvent()
 
 
@@ -54,7 +69,7 @@ def test_noConflicts_naive(noConflicts):
     assert result == []
 
 def test_oneConflict_naive(withConflicts):
-    # TEST IF NAIVE CONFLICT DETECTION FINDS 1 CONFLICT PAIR
+    # TEST IF NAIVE CONFLICT DETECTION FINDS EXACTLY 1 CONFLICT PAIR
     result = conflict_naive(withConflicts)
     assert len(result) == 1
 
@@ -103,8 +118,9 @@ def test_correctEvents_optimized(withConflicts, sort_func):
 
 
 # UNIFIED conflict() DISPATCHER
+# TESTS THAT IT SELECTS CORRECT DETECTION METHOD
 def test_noSortFunc_useNaive(withConflicts):
-    # TEST IF conflict() WITH NO sort_func FALLS THROUGH TO NAIVE DETECTION
+    # TEST IF conflict() WITH NO sort_func DEFAULTS TO NAIVE DETECTION
     result = conflict(withConflicts)
     assert len(result) == 1
 
