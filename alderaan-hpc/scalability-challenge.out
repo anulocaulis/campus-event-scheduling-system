@@ -1,1 +1,6 @@
+[2026-03-11 01:24:05] STAGE: change directory
+[2026-03-11 01:24:05] STAGE: activate conda environment
+[2026-03-11 01:24:16] STAGE: run scalability workload
 Running scalability challenge on Alderaan HPC...
+Starting scalability challenge at 2026-03-11 01:24:16
+ Generating one million random events ...
