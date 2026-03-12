@@ -1,8 +1,12 @@
 # TIMING EXPERIMENTS FOR SORTING AND SEARCHING ALGORITHMS
+# THIS SCRIPT RUNS PERFORMANCE BENCHMARKS ON MULTIPLE DATA STRUCTURES AND ALGORITHMS
+# IT MEASURES EXECUTION TIME FOR SORTING, SEARCHING, AND CONFLICT DETECTION
 import time
 import copy
 
 # IMPORT NEEDED METHODS
+# IMPORTS EVENT OBJECT AND DATA STRUCTURES USED IN THE EXPERIMENTS
+# ALSO IMPORTS RANDOM EVENT GENERATOR AND THE SORTING/SEARCHING ALGORITHMS BEING TESTED
 from event_creator import Event
 from dynamic_array import DynamicArrayEvent
 from linked_list import EventLinkedList
@@ -13,11 +17,16 @@ import conflict
 
 # FOUR TESTING SIZES FOR SORTING
 sizes = [50, 500, 5000, 50000]
+
 # FOUR TESTING SIZES FOR CONFLICT DETECTION
+# SEPARATE SIZE LIST BECAUSE NAIVE CONFLICT ALGORITHM IS MUCH SLOWER
 conf_size = [100, 500, 5000, 10000]
+
 # NUMBER OF REPEATS FOR AVERAGING
 trials = 3
+
 # SORT ALGORITHMS TO TEST AND THEIR DISPLAY LABELS
+# MAPS HUMAN-READABLE NAMES TO THE ACTUAL ALGORITHM IDENTIFIERS USED
 sortAlgs = {
     "Insertion": "insertSort",
     "Merge":     "mergeSort",
@@ -25,6 +34,7 @@ sortAlgs = {
 }
 
 # LOADS LIST OF EVENTS INTO OUR DYNAMIC ARRAY STRUCTURE
+# CONVERTS A STANDARD PYTHON LIST OF Event OBJECTS INTO A DynamicArrayEvent STRUCTURE
 def loadArray(events):
     """
     TAKES LIST OF EVENTS AND LOADS THEM INTO OUR DynamicArrayEvent.
@@ -40,6 +50,7 @@ def loadArray(events):
     return dyn_arr
 
 # LOADS LIST OF EVENTS INTO OUR LINKED LIST STRUCTURE
+# CONVERTS A STANDARD PYTHON LIST OF Event OBJECTS INTO A EventLinkedList STRUCTURE
 def loadLinked(events):
     """
     TAKES LIST OF EVENTS AND LOADS THEM INTO OUR Linked List STRUCTURE.
@@ -55,6 +66,9 @@ def loadLinked(events):
     return linked
 
 # BENCHMARK TESTING OF SORTING ALGORITHMS
+# THIS FUNCTION TIMES insertSort, mergeSort, AND quickSort
+# EACH ALGORITHM IS TESTED ON BOTH DynamicArrayEvent AND EventLinkedList
+# MULTIPLE DATASET SIZES ARE USED AND TIMES ARE AVERAGED ACROSS TRIALS
 def benchmark_sorting():
     """
     MEASURES RUNTIME OF ALL 3 SORT ALGORITHMS
@@ -72,6 +86,7 @@ def benchmark_sorting():
         
     """
     # BUILD THE RESULTS DICT — NESTED: ALGORITHM > STRUCTURE > SIZE > TIME
+    # THIS STRUCTURE STORES AVERAGE EXECUTION TIME FOR EACH COMBINATION TESTED
     results = {}
     for alg in sortAlgs:
         results[alg] = {
@@ -79,13 +94,17 @@ def benchmark_sorting():
             "Linked List": {}
         }
 
+    # OUTER LOOP: ITERATE THROUGH EACH DATASET SIZE
+    # GENERATE A BASE RANDOM EVENT LIST THAT WILL BE COPIED FOR EACH TRIAL
     for n in sizes:
         print(f"\n  Generating {n:,} random events...")
         baseEvents = genEvents(n)
 
+        # LOOP THROUGH EACH SORTING ALGORITHM
         for alg, key in sortAlgs.items():
 
             # TESTING ARRAY STRUCTURE
+            # RUN THE SELECTED SORT ALGORITHM ON THE DynamicArrayEvent STRUCTURE
             arrTime = 0
             for t in range(trials):
                 # DEEP COPY: INDEPENDENT COPY OF LIST SO EACH TRIAL STARTS UNSORTED
@@ -102,7 +121,8 @@ def benchmark_sorting():
             results[alg]["Array"][n] = avgTime
             print(f"    {alg:15s} | Array       | n={n:6,} | {avgTime:.6f}s")
 
-            # TESTING LINKED LIST STRUCTURE            
+            # TESTING LINKED LIST STRUCTURE
+            # RUN THE SAME SORT ALGORITHM ON TEH EventLinkedList STRUCTURE
             linkedTime = 0
             for t in range(trials):
                 deepCop = copy.deepcopy(baseEvents)
@@ -121,6 +141,8 @@ def benchmark_sorting():
     return results
 
 # BENCHMARK TESTING OF SEARCHING ALGORITHMS
+# THIS FUNCTION COMPARES LINEAR SEARCH AND BINARY SEARCH PERFORMANCE
+# TESTS ARE RUN ON BOTH SORTED AND UNSORTED DATA TO ILLUSTRATE PERFORMANCE DIFFERENCES
 def benchmark_searching():
     """
     MEASURES RUNTIME OF LINEAR SEARCH VS BINARY SEARCH
@@ -133,23 +155,26 @@ def benchmark_searching():
             (CAN'T REALLY TEST BINARY SEARCH ON UNSORTED)
 
     """
-
+    # INITIALIZE RESULTS DICTIONARY FOR STORING SEARCH TIMING
     results = {
         "linear":        {"unsorted": {}, "sorted": {}},
         "binary":        {"sorted": {}},
     }
 
+    # LOOP THROUGH EACH DATASET SIZE AND GENERATE RANDOM EVENTS
     for n in sizes:
         print(f"\n  n = {n:,}")
         baseEvents = genEvents(n)
-        # SORT A COPY FOR BINARY SEARCH USING quickSort()
+        
+        # SORT A COPY OF DATA USING quickSort() SO BINARY SEARCH CAN BE USED
         sorted = quickSort(copy.deepcopy(baseEvents), key=lambda e: e.id)
 
         # TARGET: ID OF LAST ELEMENT IN SORTED LIST
         # LINEAR SEARCH ON UNSORTED DATA HAS TO SCAN WHOLE LIST: WORST CASE SCENARIO
         target_id = sorted[-1].id
 
-        # LINEAR ON UNSORTED
+        # LINEAR ON UNSORTED DATA
+        # DEMONSTRATES THE COST OF FULL LIST SCANNING
         totalTime = 0
         for t in range(trials):
             deepCop_unsorted = copy.deepcopy(baseEvents)
@@ -161,7 +186,8 @@ def benchmark_searching():
         results["linear"]["unsorted"][n] = avgTime
         print(f"    Linear  | Unsorted | {avgTime:.6f}s")
 
-        # LINEAR ON SORTED - SHOWS THAT SORTING DATA DOES NOT HELP LINEAR SEARCH TIMES
+        # LINEAR ON SORTED DATA
+        # SHOWS THAT SORTING DATA DOES NOT IMPROVE LINEAR SEARCH COMPLEXITY
         totalTime = 0
         for t in range(trials):
             deepCop_sorted = copy.deepcopy(sorted)
@@ -173,7 +199,8 @@ def benchmark_searching():
         results["linear"]["sorted"][n] = avgTime
         print(f"    Linear  | Sorted   | {avgTime:.6f}s")
 
-        # BINARY ON SORTED
+        # BINARY ON SORTED DATA
+        # DEMONSTRATES THE LOGARITHMIC TIME COMPLEXITY ADVANTAGE OF BINARY SEARCH
         totalTime = 0
         for t in range(trials):
             deepCop_sorted = copy.deepcopy(sorted)
@@ -188,6 +215,8 @@ def benchmark_searching():
     return results
 
 # BENCHMARK TESTING FOR CONFLICT DETECTION
+# COMPARES A NAIVE O(n^2) CONFLICT DETECTION APPROACH AGAINST AN OPTIMIZED VERSION
+# OPTIMIZED VERSION FIRST SORTS EVENTS USING DIFFERENT SORT ALGORITHMS
 def benchmark_conflict():
     """
     MEASURES RUNTIME OF NAIVE VS OPTIMIZED CONFLICT DETECTION.
@@ -209,22 +238,28 @@ def benchmark_conflict():
     algos = ["Naive", "insertSort", "mergeSort", "quickSort"]
     loaders = {"Array": loadArray, "LinkedList": loadLinked}
 
-    # DEFINE RESULTS
+    # INITIALIZE RESULTS DATA STRUCTURE FOR STORING TIMES
     results = {"Array":  {alg: {} for alg in algos},
                "LinkedList": {alg: {} for alg in algos}}
-    # DEFINE TRIALS
+    
+    # LOOP THROUGH EACH DATASET SIZE USED FOR CONFLICT TESTING
     for n in conf_size:
         print(f"\n  n = {n:,}")
         baseEvents = genEvents(n)
-        # ITERATE FIRST THROUGH LINKED LIST AND ARRAY
+        
+        # TEST BOTH DATA STRUCTURES: DynamicArrayEvent AND EventLinkedList
         for structure in structures:
             loader_func = loaders[structure]
-            # THEN ITERATE THROUGH ALGORITHM TYPES
+            
+            # TEST EACH CONFLICT DETECTION STRATEGY
             for alg in algos:
+                # SKIP NAIVE ALGORITHM FOR VERY LARGE DATASETS BECAUSE IT'S TOO SLOW
                 if alg == "Naive" and n > 5000:
                     print(f"skipping brute force conflict detection for n={n} for troubleshooting")
                     continue
                 conflict_time = 0
+                
+                # RUN MULTIPLE TRIALS FOR AVERAGING
                 for t in range(trials):
                     container = loader_func(copy.deepcopy(baseEvents))
                     sort_func = None
@@ -241,6 +276,8 @@ def benchmark_conflict():
     return results
 
 # ENTRY POINT
+# WHEN THIS SCRIPT IS RUN DIRECTLY, EXECUTE ALL THREE BENCHMARK SUITES
+# RESULTS ARE STORED IN VARIABLES SO THEY CAN BE PASSED INTO A PLOTTING FUNCTION
 if __name__ == "__main__":
     sort_results    = benchmark_sorting()
     search_results  = benchmark_searching()

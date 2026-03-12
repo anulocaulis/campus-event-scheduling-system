@@ -14,22 +14,35 @@ LINEAR SEARCH ALGORITHM: Complexity = O(n)
         iter - NUMBER OF LOOP ITERATIONS
 '''
 def linear(target, events):
-    # IF INPUT IS LINKED LIST, CONVERT TO ARRAY FOR SORTING, THEN BINARY SEARCH
+    # IMPORT converter() TO ALLOW LINKED LISTS TO BE TRANSFORMED INTO ARRAYS
     from converter import converter  # IMPORTING CONVERTER METHOD
+    # IMPORT EventLinkedList CLASS SO WE CAN CHECK INPUT TYPE
     from linked_list import EventLinkedList # IMPORTING EventLinkedList
+
+    # IF INPUT IS ACTUALLY A LINKED LIST, CONVERT IT TO A STANDARD ARRAY
+    # THIS ALLOWS THE SEARCH ALGORITHM TO WORK UNIFORMLY ON BOTH DATA STRUCTURES
     if isinstance(events, EventLinkedList):  # CHECKING TO SEE IF THE ARRAY IS ACTUALLY A LINKED LIST
         events = converter(events)
     
-    iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS
+    # INITIALIZE ITERATION COUNTER TO TRACK HOW MANY ELEMENTS ARE CHECKED
+    iter = 0
+    # LOOP THROUGH events USING enumerate() TO TRACK BOTH INDEX AND VALUE
     for i, val in enumerate(events):  # USING enumerate() TO TRACK INDEX & VALUE
-        iter += 1              # INCREMENT ITERATIONS COUNTER
-        if val.id == target:            # TARGET NUMBER FOUND IN GIVEN LIST/RRAY
-            print(f"After {iter} 'guesses', target number ({target}) found at index {i}.")       # PRINT STATEMENT FOR TRACKING/DEBUGGING
-            return i, iter     # RETURN INDEX WHERE TARGET VALUE FOUND
+        # INCREMENT ITERATION COUNTER EACH TIME A NEW ELEMENT IS EXAMINED
+        iter += 1
+        # CHECK WHETHER CURRENT EVENT id MATCHES target VALUE
+        if val.id == target:            # TARGET NUMBER FOUND IN GIVEN LIST/ARRAY
+            # PRINT DEBUG INFORMATION SHOWING HOW MANY SEARCH STEPS WERE REQUIRED
+            print(f"After {iter} 'guesses', target number ({target}) found at index {i}.")       
+            # RETURN THE INDEX WHERE TARGET WAS FOUND AND NUMBER OF ITERATIONS
+            return i, iter
 
-    # TARGET NUMBER NOT FOUND IN GIVEN LIST/ARRAY
+    # EXECUTED IF LOOP FINISHES WITHOUT FINDING TARGET
+    # PRINT MESSAGE INDICATING TARGET WAS NOT FOUND
     print(f"After {iter} 'guesses', target number ({target}) NOT found in the given range.")
-    return -1, iter            # RETURN -1 TO SHOW TARGET NUMBER NOT FOUND
+
+    # RETURN -1 TO INDICATE FAILURE AND PROVIDE ITERATION COUNT
+    return -1, iter
 
 # BINARY SEARCH FOR ARRAY IMPLEMENTATION
 '''
@@ -56,29 +69,46 @@ BINARY SEARCH ALGORITHM: Complexity = O(log n)
         binary("2026-03-06", date_sorted, key=lambda e: e.date)
 '''
 def binary(target, array, key=None):
-    # IF INPUT IS LINKED LIST, CONVERT TO ARRAY FOR SORTING, THEN BINARY SEARCH
+    # IMPORT converter() TO SUPPORT SEARCHING LINKED LIST INPUTS
     from converter import converter  # IMPORTING CONVERTER METHOD
+    # IMPORT LINKED LIST CLASS FOR TYPE CHECKING
     from linked_list import EventLinkedList # IMPORTING EventLinkedList
+
+    # IF INPUT DATA STRUCTURE IS A LINKED LIST, CONVERT IT INTO A STANDARD ARRAY
     if isinstance(array, EventLinkedList):  # CHECKING TO SEE IF THE ARRAY IS ACTUALLY A LINKED LIST
         array = converter(array)
-
-    # DEFAULT KEY IS EVENT ID
+    # IF NO KEY FUNCTION IS PROVIDED, DEFAULT TO SEARCHING BY EVENT id
     if key is None: key = lambda e: e.id
     
-    iter = 0                   # COUNTER FOR NUMBER OF LOOP ITERATIONS        
-    low = 0                    # LOW INDEX OF RANGE
-    high = len(array) - 1      # HIGH INDEX OF RANGE
-    while low <= high:         # MAIN WHILE LOOP: SEARCH UNTIL TARGET FOUND OR LIST ENDS
-        iter += 1                     # INCREMENT ITERATIONS COUNTER
-        middle = (low + high) // 2    # DIVIDING OUR SEARCH RANGE IN HALF
+    # INITIALIZE ITERATION COUNTER TO TRACK NUMBER OF BINARY SEARCH STEPS
+    iter = 0
+    # SET INITIAL LOWER BOUND OF SEARCH RANGE
+    low = 0
+    # SET INITIAL UPPER BOUND OF SEARCH RANGE
+    high = len(array) - 1
+    # CONTINUE SEARCH WHILE SEARCH WINDOW IS VALID
+    while low <= high:
+        # COUNT EACH ITERATION OF THE BINARY SEARCH LOOP
+        iter += 1
+        # CALCULATE MIDDLE INDEX OF CURRENT SEARCH RANGE
+        middle = (low + high) // 2
+        # EXTRACT VALUE AT middle USING PROVIDED KEY FUNCTION
         m_val = key(array[middle])
-        if m_val == target:           # TARGET NUMBER FOUND IN LIST
+        # CHECK IF MIDDLE VALUE MATCHES TARGET
+        if m_val == target:
+            # PRINT DEBUG INFORMATION SHOWING NUMBER OF SEARCH STEPS
             print(f"After {iter} 'guesses', target number ({target}) found at index {middle}.")
-            return middle, iter       # RETURN INDEX WHERE VALUE FOUND
-        elif m_val < target:         # TARGET VALUE GREATER THAN MIDDLE VALUE
-            low = middle + 1          # SETS low TO INDEX JUST ABOVE MIDDLE
-        else:                         # TARGET VALUE LESS THAN MIDDLE VALUE
-            high = middle - 1         # SETS high TO INDEX JUST BELOW MIDDLE
+            # RETURN INDEX WHERE TARGET FOUND AND NUMBER OF ITERATIONS
+            return middle, iter
+        # IF TARGET IS GREATER THAN MIDDLE VALUE, SEARCH RIGHT HALF
+        elif m_val < target:
+            low = middle + 1
+        # OTHERWISE TARGET IS SMALLER, SEARCH LEFT HALF
+        else:
+            high = middle - 1
+
+    # EXECUTED IF SEARCH RANGE COLLAPSES WITHOUT FINDING TARGET
     print(f"After {iter} 'guesses', target number ({target}) NOT found in the given range.")
+    # RETURN -1 TO INDICATE FAILURE AND RETURN ITERATION COUNT
     return -1, iter
 

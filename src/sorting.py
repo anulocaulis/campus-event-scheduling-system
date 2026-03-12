@@ -1,92 +1,114 @@
 # SORTING ALGORITHMS: INSERTION, MERGE, QUICK
 
-# IMPORTs
+# IMPORT random MODULE FOR RANDOMIZED PIVOT SELECTION IN quickSort()
 import random
 
 # INSERTION SORT FOR ARRAY IMPLEMENTATION
 def insertSort(myArray, key=None):
-    n = len(myArray)         # ASSIGN n AS len(myArray) FOR EASE OF USE
-  
-    # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
+    # STORE LENGTH OF ARRAY FOR LOOP CONTROL
+    n = len(myArray)
+    # IF NO KEY FUNCTION PROVIDED, DEFAULT TO Event.sortKey()
+    # THIS ALLOWS EVENTS TO BE SORTED BY (date, time, location)
     if key is None: key = lambda e: e.sortKey()
-
-    # ITERATES THROUGH WHOLE LIST STARTING AT IDX 1, SINCE IDX 0 SORTED
-    for i in range(1, n):    # I FIRST HAD IT AS n-1, LEAVING LAST ELEM UNSORTED
-        curr = myArray[i]    # STORE CURR VALUE AS curr FOR SHIFTING
-        j = i - 1            # COMPARE curr TO LIST ELEMS TO LEFT OF IT
-
-        # PREVENTS j FROM GOING OUT OF BOUNDS LEFT
-        while j >= 0 and key(myArray[j]) > key(curr): # INSURE ELEM GOES TO RIGHT OF curr
-            myArray[j + 1] = myArray[j]  # SHIFT EVERYTHING OVER TO THE RIGHT
-            j = j - 1           # MOVING RIGHT TO LEFT INSTEAD OF LEFT TO RIGHT
-
-        myArray[j + 1] = curr   # USE j + 1 SINCE j POINTING TO ELEM < curr
-
+    # LOOP THROUGH ARRAY STARTING AT INDEX 1
+    # INDEX 0 IS TRIVIALLY SORTED BECAUSE A SINGLE ELEMENT IS ALWAYS SORTED
+    for i in range(1, n):
+        # STORE CURRENT VALUE BEING INSERTED INTO THE SORTED PORTION
+        curr = myArray[i]
+        # j POINTS TO ELEMENT DIRECTLY LEFT OF i
+        j = i - 1
+        # MOVE LEFTWARD THROUGH THE SORTED SECTION WHILE ELEMENTS ARE GREATER THAN curr
+        # THIS SHIFTS LARGER ELEMENTS ONE POSITION TO THE RIGHT
+        while j >= 0 and key(myArray[j]) > key(curr):
+            # SHIFT ELEMENT RIGHTWARD TO MAKE SPACE
+            myArray[j + 1] = myArray[j]
+            # MOVE COMPARISON INDEX ONE POSITION LEFT
+            j = j - 1
+        # INSERT curr INTO ITS CORRECT SORTED POSITION
+        myArray[j + 1] = curr
+    # RETURN SORTED ARRAY
     return myArray
 
 # MERGE SORT FOR ARRAY IMPLEMENTATION
 def mergeSort(myArray, key=None):
-    # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
+    # IF NO KEY FUNCTION PROVIDED, DEFAULT TO Event.sortKey()
     if key is None: key = lambda e: e.sortKey()
-    
-    n = len(myArray)                    # ASSIGN n AS len(myArray) FOR EASE
+    # STORE LENGTH OF ARRAY
+    n = len(myArray)
+    # BASE CASE: ARRAYS OF SIZE 0 OR 1 ARE ALREADY SORTED
     if n <= 1:
-        return myArray                  # BASE CASE len(myArray) <= 1
-    else:
-        left = myArray[0:n//2]          # left LIST IS FIRST HALF OF myArray
-        right = myArray[n//2:n]         # right LIST IS SECOND HALF OF myArray
-
-        L_sort = mergeSort(left, key=key)        # RECURSIVE CALL TO SPLIT left FURTHER
-        R_sort = mergeSort(right, key=key)       # RECURSIVE CALL TO SPLIT right FURTHER
-
-    s = []                              # EMPTY LIST TO STORE FINAL RESULT
-    i = 0                               # COUNTER FOR L_sort
-    j = 0                               # COUNTER FOR R_sort
-
-    # BOTH LEFT AND RIGHT LISTS STILL HAVE ELEMENTS
-    while i < len(L_sort) and j < len(R_sort):
-        # COMPARE THE TWO VALUES
-        if key(L_sort[i]) <= key(R_sort[j]):      # VAL FROM LEFT < VAL FROM RIGHT
-            s.append(L_sort[i])         # APPEND LEFT VAL TO sorted
-            i += 1                      # INCREMENT COUNTER FOR LEFT LIST
-        else:                           # VAL FROM RIGHT < VAL FROM LEFT
-            s.append(R_sort[j])         # APPEND RIGHT VAL TO sorted
-            j += 1                      # INCREMENT COUNTER FOR RIGHT LIST
-
-    # LEFT LIST EMPTY, RIGHT LIST HAS REMAINING (SORTED) ELEMENTS
-    while j < len(R_sort):              # ITERATE THROUGH REMAINING ELEMENTS
-        s.append(R_sort[j])             # APPEND EACH ELEMENT TO sorted
-        j += 1                          # INCREMENT j COUNTER
-
-    # RIGHT LIST EMPTY, LEFT LIST HAS REMAINING (SORTED) ELEMENTS
-    while i < len(L_sort):              # ITERATE THROUGH REMAINING ELEMENTS
-        s.append(L_sort[i])             # APPEND EACH ELEMENT TO sorted
-        i += 1                          # INCREMENT i COUNTER
-
-    return s                            # RETURN SORTED LIST
-
-# QUICKSORT FOR ARRAY IMPLEMENTATION
-def quickSort(myArray, key =None):
-    # IF EVENT DOESN'T ALREADY HAVE A SORT KEY, THIS GIVES IT ONE
-    if key is None: key = lambda e: e.sortKey()
-    
-    n = len(myArray)                  # ASSIGN n AS len(myArray) FOR EASE OF USE
-    if n <= 1:                          # BASE CASE RETURNS myArray
         return myArray
     else:
-        pivot = random.choice(myArray)   # PICK PIVOT: RANDOM CHOICE FROM myArray
-        less = []                        # CREATE EMPTY LIST FOR VALS < pivot
-        equal = [pivot]                  # CREATE EMPTY LIST FOR VALS = pivot
-        more = []                        # CREATE EMPTY LIST FOR VALS > pivot
-        for i in myArray:            
-            if key(i) < key(pivot):       # COMPARE i TO pivot
-                less.append(i)  # IF i < pivot, APPEND TO less
-            elif key(i) == key(pivot):
-                equal.append(i) # IF i = pivot, APPEND TO equal
-            else:
-                more.append(i)  # IF i > pivot, APPEND TO more
-        sortLess = quickSort(less, key=key) # RECURSIVE CALL TO SORT less
-        sortMore = quickSort(more, key=key) # RECURSIVE CALL TO SORT more
+        # SPLIT ARRAY INTO TWO HALVES
+        left = myArray[0:n//2]
+        right = myArray[n//2:n]
+        # RECURSIVELY SORT BOTH HALVES
+        L_sort = mergeSort(left, key=key)
+        R_sort = mergeSort(right, key=key)
+    # CREATE EMPTY LIST THAT WILL STORE MERGED RESULT
+    s = []
+    # POINTER FOR LEFT SORTED LIST
+    i = 0
+    # POINTER FOR RIGHT SORTED LIST
+    j = 0
+    # MERGE BOTH SORTED HALVES WHILE BOTH HAVE REMAINING ELEMENTS
+    while i < len(L_sort) and j < len(R_sort):
+        # COMPARE CURRENT ELEMENTS FROM BOTH LISTS
+        if key(L_sort[i]) <= key(R_sort[j]):
+            # APPEND SMALLER ELEMENT FROM LEFT LIST
+            s.append(L_sort[i])
+            # MOVE LEFT POINTER FORWARD
+            i += 1
+        else:
+            # APPEND SMALLER ELEMENT FROM RIGHT LIST
+            s.append(R_sort[j])
+            # MOVE RIGHT POINTER FORWARD
+            j += 1
+    # IF RIGHT LIST STILL HAS ELEMENTS REMAINING, APPEND THEM
+    while j < len(R_sort):
+        s.append(R_sort[j])
+        j += 1
+    # IF LEFT LIST STILL HAS ELEMENTS REMAINING, APPEND THEM
+    while i < len(L_sort):
+        s.append(L_sort[i])
+        i += 1
+    # RETURN FULLY MERGED AND SORTED LIST
+    return s            
 
-    s = sortLess + equal + sortMore    # CONCATENATE THREE (3) SUBLISTS TOGETHER
+# QUICKSORT FOR ARRAY IMPLEMENTATION
+def quickSort(myArray, key=None):
+    # IF NO KEY FUNCTION PROVIDED, DEFAULT TO Event.sortKey()
+    if key is None: key = lambda e: e.sortKey()
+    # STORE LENGTH OF ARRAY
+    n = len(myArray)
+    # BASE CASE: ARRAYS OF SIZE 0 OR 1 ARE ALREADY SORTED
+    if n <= 1:
+        return myArray
+    else:
+        # SELECT RANDOM ELEMENT FROM ARRAY AS PIVOT
+        # RANDOMIZED PIVOTS HELP REDUCE WORST-CASE SCENARIOS
+        pivot = random.choice(myArray)
+        # LIST FOR ELEMENTS SMALLER THAN PIVOT
+        less = []
+        # LIST FOR ELEMENTS EQUAL TO PIVOT
+        equal = []
+        # LIST FOR ELEMENTS GREATER THAN PIVOT
+        more = []
+        # PARTITION ORIGINAL ARRAY INTO THREE GROUPS
+        for i in myArray:
+            # IF ELEMENT IS LESS THAN PIVOT, ADD TO less
+            if key(i) < key(pivot):
+                less.append(i)
+            # IF ELEMENT EQUALS PIVOT VALUE, ADD TO equal
+            elif key(i) == key(pivot):
+                equal.append(i)
+            # OTHERWISE ELEMENT IS GREATER THAN PIVOT
+            else:
+                more.append(i)
+        # RECURSIVELY SORT BOTH PARTITIONS
+        sortLess = quickSort(less, key=key)
+        sortMore = quickSort(more, key=key)
+    # CONCATENATE SORTED PARTITIONS AND PIVOT VALUES
+    s = sortLess + equal + sortMore
+    # RETURN FULLY SORTED LIST
     return s

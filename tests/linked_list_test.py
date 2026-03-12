@@ -7,7 +7,7 @@ import pytest
 @pytest.fixture
 
 def ll():
-    """ Provides fresh instance of the EventLinkedList class and cleans up after test. """
+    """ Provides fresh empty instance of the EventLinkedList class for each test. """
     return EventLinkedList()
 
 def test_insert_event(ll):
